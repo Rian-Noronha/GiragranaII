@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/fragmentListProduct">
+    <fragment
+        android:id="@+id/fragmentListProduct"
+        android:name="com.rn.giragrana.list.FragmentListProduct"
+        android:label="FragmentListProduct"
+        tools:layout="@layout/fragment_list_product"
+        >
+        <action
+            android:id="@+id/action_fragmentListProduct_to_fragmentListClient"
+            app:destination="@id/fragmentListClient" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentListClient"
+        android:name="com.rn.giragrana.list.FragmentListClient"
+        android:label="FragmentListClient"
+        tools:layout="@layout/fragment_list_client"
+        />
+</navigation>
