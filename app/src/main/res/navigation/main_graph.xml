@@ -6,18 +6,53 @@
     app:startDestination="@id/fragmentListProduct">
     <fragment
         android:id="@+id/fragmentListProduct"
-        android:name="com.rn.giragrana.list.FragmentListProduct"
-        android:label="FragmentListProduct"
+        android:name="com.rn.giragrana.list.ProductListFragment"
+        android:label="Produtos"
         tools:layout="@layout/fragment_list_product"
         >
         <action
             android:id="@+id/action_fragmentListProduct_to_fragmentListClient"
             app:destination="@id/fragmentListClient" />
+
+        <action
+            android:id="@+id/action_fragmentListProduct_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            />
+        <action
+            android:id="@+id/action_fragmentListProduct_to_productFormFragment"
+            app:destination="@id/productFormFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
-        android:name="com.rn.giragrana.list.FragmentListClient"
-        android:label="FragmentListClient"
+        android:name="com.rn.giragrana.list.ClientListFragment"
+        android:label="Clientes"
         tools:layout="@layout/fragment_list_client"
         />
+
+
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.rn.giragrana.details.ProductDetailsFragment"
+        android:label="Detalhes de produto"
+        tools:layout="@layout/fragment_product_details"
+        >
+        <argument
+            android:name="productId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_productFormFragment"
+            app:destination="@id/productFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFormFragment"
+        android:name="com.rn.giragrana.form.ProductFormFragment"
+        android:label="ProductFormFragment"
+        tools:layout="@layout/fragment_product_form"
+        >
+        <argument
+            android:name="productId"
+            app:argType="long" />
+    </fragment>
+
 </navigation>

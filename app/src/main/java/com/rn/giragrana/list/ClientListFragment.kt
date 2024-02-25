@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.rn.giragrana.databinding.FragmentListClientBinding
 
-class FragmentListClient : Fragment(){
+class ClientListFragment : Fragment(){
     private lateinit var binding: FragmentListClientBinding
     override fun onCreateView(
         inflater: LayoutInflater,
