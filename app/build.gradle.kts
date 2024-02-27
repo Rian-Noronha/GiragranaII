@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt") version "1.9.22"
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -51,7 +52,7 @@ val junit_version="4.13.2"
 val testrunner_version="1.1.5"
 val espresso_version="3.5.1"
 val paging_compose_version="1.0.0-alpha15"
-val navigation_version="2.7.6"
+val nav_version = "2.7.7"
 
 dependencies {
 
@@ -78,8 +79,17 @@ dependencies {
     implementation("androidx.room:room-paging:$room_version")
     implementation("androidx.paging:paging-compose:$paging_compose_version")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$testrunner_version")

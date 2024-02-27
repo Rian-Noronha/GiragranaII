@@ -1,9 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Giragrana" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Fragments" parent="Theme.Material3.Light">
     </style>
-
-    <style name="Theme.Giragrana" parent="Base.Theme.Giragrana" />
+    <style name="Theme.Fragments" parent="Base.Theme.Fragments" />
 </resources>

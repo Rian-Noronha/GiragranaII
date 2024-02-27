@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">Giragrana</string>
     <string name="action_client">Cliente</string>
+    <string name="action_info">Info</string>
+    <string name="action_new_product">Novo Produto</string>
+
+    <string name="about_title">Dominando o Android</string>
+    <string name="about_message">Desenvolvido por Rian Noronha</string>
+    <string name="about_button_site">Veja mais</string>
+
+    <string name="form_label_name">Nome</string>
+    <string name="form_label_image">Imagem</string>
+    <string name="form_label_price">Preço</string>
+    <string name="form_label_description">Descrição</string>
+    <string name="fab_description">Este é o botão flutuante para adicionar um produto</string>
+
+    <string name="error_invalid_product">Produto não preenchido corretamente</string>
+    <string name="error_product_not_found">Produto não encontrado</string>
+    <string name="action_delete">Excluir</string>
+    <plurals name="list_product_selected">
+        <item quantity="one">1 selecionado</item>
+        <item quantity="other">%d selecionados</item>
+    </plurals>
+
+    <string name="message_products_deleted">%d itens excluídos</string>
+    <string name="undo">Desfazer</string>
+
+    <string name="action_share">Compartilhar</string>
+    <string name="share_text"> -> %1$s: %2$s</string>
+    <string name="action_edit">Editar</string>
+    <string name="scroll_description">Scroll na tela de formulário</string>
+
 </resources>
