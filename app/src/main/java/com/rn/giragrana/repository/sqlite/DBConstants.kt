@@ -3,12 +3,13 @@ package com.rn.giragrana.repository.sqlite
 const val DATABASE_NAME = "dbGiragrana"
 const val DATABASE_VERSION = 1
 
-const val TABLE_PRODUCT = "prodcut"
+const val TABLE_PRODUCT = "product"
 const val PRODUCT_COLUMN_ID = "_id"
 const val PRODUCT_COLUMN_NAME = "name"
 const val PRODUCT_COLUMN_DESCRIPTION = "description"
 const val PRODUCT_COLUMN_IMAGE = "image"
 const val PRODUCT_COLUMN_PRICE = "price"
+const val PRODUCT_COLUMN_SOLD = "sold"
 
 const val TABLE_CLIENT = "client"
 const val CLIENT_COLUMN_ID = "_id"

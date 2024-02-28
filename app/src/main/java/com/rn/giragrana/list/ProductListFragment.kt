@@ -84,7 +84,8 @@ ActionMode.Callback {
 
         binding.fabAdd.setOnClickListener {
             hideDeleteMode()
-            viewModel.navigateToProductForm
+            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                .navigate(R.id.action_fragmentListProduct_to_productFormFragment)
         }
 
 
@@ -92,19 +93,6 @@ ActionMode.Callback {
             search()
         }
 
-        viewModel.navigateToProductForm.observe(viewLifecycleOwner){ action ->
-            action?.let {
-                Navigation.findNavController(requireView()).navigate(action)
-                viewModel.onProductFormNavigated()
-            }
-        }
-
-        viewModel.navigateToProductDetails.observe(viewLifecycleOwner) { action ->
-            action?.let {
-                Navigation.findNavController(requireView()).navigate(action)
-                viewModel.onProductDetailsNavigated()
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -143,7 +131,10 @@ ActionMode.Callback {
         super.onListItemClick(l, v, position, id)
         val product = l?.getItemAtPosition(position) as Product
         viewModel.selectProduct(product)
-        viewModel.navigateToProductDetails(product.id)
+
+        val action = ProductListFragmentDirections
+            .actionFragmentListProductToProductDetailsFragment(productId = product.id)
+        findNavController().navigate(action)
     }
 
     fun search(text: String = "") {

@@ -70,5 +70,15 @@
                 android:inputType="numberDecimal"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Switch
+            android:id="@+id/switchSold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:minHeight="48dp"
+            android:text="@string/form_label_sold">
+        </Switch>
+
     </LinearLayout>
 </ScrollView>

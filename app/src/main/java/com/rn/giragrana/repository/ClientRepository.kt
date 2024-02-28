@@ -1,4 +1,4 @@
-package com.rn.giragrana.repository.sqlite
+package com.rn.giragrana.repository
 
 import androidx.lifecycle.LiveData
 import com.rn.giragrana.model.Client

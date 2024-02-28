@@ -15,6 +15,7 @@ data class Product(
     var description:String = "",
     var image:String = "",
     var price: Float = 0.0F,
+    var sold: Boolean = false
 ){
     override fun toString(): String = name
 }

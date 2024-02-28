@@ -14,13 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductDetailsBinding
-import com.rn.giragrana.form.ProductFormFragment
-import com.rn.giragrana.form.ProductFormViewModel
-import com.rn.giragrana.list.ProductListFragmentDirections
-import com.rn.giragrana.list.ProductListViewModel
 import com.rn.giragrana.model.Product
 import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductDetailsFragment : Fragment(){
@@ -45,14 +40,6 @@ class ProductDetailsFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.navigateToProductForm.observe(viewLifecycleOwner){ action ->
-            action?.let {
-                Navigation.findNavController(requireView()).navigate(action)
-                viewModel.onProductDetailsNavigated()
-            }
-        }
-
         arguments?.run {
             val id = getLong(EXTRA_PRODUCT_ID, -1)
             viewModel.loadProductDetails(id).observe(viewLifecycleOwner, Observer { product ->
@@ -79,7 +66,14 @@ class ProductDetailsFragment : Fragment(){
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item?.itemId == R.id.action_edit){
-            product?.let { viewModel.navigateToProductForm(it.id) }
+            arguments?.run {
+                val id = getLong(EXTRA_PRODUCT_ID, -1)
+
+                val action = ProductDetailsFragmentDirections
+                    .actionProductDetailsFragmentToProductFormFragment(productId = id)
+
+                findNavController().navigate(action)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

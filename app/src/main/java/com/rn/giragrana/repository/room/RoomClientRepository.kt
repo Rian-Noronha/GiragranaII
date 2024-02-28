@@ -2,7 +2,7 @@ package com.rn.giragrana.repository.room
 
 import androidx.lifecycle.LiveData
 import com.rn.giragrana.model.Client
-import com.rn.giragrana.repository.sqlite.ClientRepository
+import com.rn.giragrana.repository.ClientRepository
 
 class RoomClientRepository(
     database: GiragranaDatabase

@@ -29,26 +29,6 @@ class ProductListViewModel(
     private val showDeletedMessage = SingleLiveEvent<Int>()
     private val showDetailsCommand = SingleLiveEvent<Product>()
 
-    private val _navigateToProductDetails = MutableLiveData<NavDirections?>()
-    val navigateToProductDetails: MutableLiveData<NavDirections?> get() = _navigateToProductDetails
-
-    private val _navigateToProductForm = MutableLiveData<NavDirections?>()
-    val navigateToProductForm = MutableLiveData<NavDirections?>()
-
-    fun navigateToProductDetails(productId: Long){
-        val action = ProductListFragmentDirections
-            .actionFragmentListProductToProductDetailsFragment(productId)
-        _navigateToProductDetails.value = action
-    }
-
-    fun onProductDetailsNavigated() {
-        _navigateToProductDetails.value = null
-    }
-
-    fun onProductFormNavigated(){
-        _navigateToProductForm.value = null
-    }
-
     fun isInDeleteMode(): LiveData<Boolean> = inDeleteMode
 
     fun getSearchTerm(): LiveData<String>? = searchTerm

@@ -12,6 +12,7 @@
     <string name="form_label_image">Imagem</string>
     <string name="form_label_price">Preço</string>
     <string name="form_label_description">Descrição</string>
+    <string name="form_label_sold">Tá vendido?</string>
     <string name="fab_description">Este é o botão flutuante para adicionar um produto</string>
 
     <string name="error_invalid_product">Produto não preenchido corretamente</string>

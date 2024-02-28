@@ -56,6 +56,7 @@ class ProductFormFragment : DialogFragment() {
         binding.edtDescription.setText(product.description)
         binding.edtImage.setText(product.image)
         binding.edtPrice.setText(product.price.toString())
+        binding.switchSold.isChecked = product.sold
     }
 
     private fun errorProductInvalid() {
@@ -84,6 +85,7 @@ class ProductFormFragment : DialogFragment() {
                 product.description = binding.edtDescription.text.toString()
                 product.image = binding.edtImage.text.toString()
                 product.price = binding.edtPrice.text.toString().toFloat()
+                product.sold = binding.switchSold.isChecked
 
                 if(viewModel.saveProduct(product)){
                     dialog?.dismiss()
