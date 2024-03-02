@@ -14,11 +14,10 @@ import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.ListFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rn.giragrana.R
+import com.rn.giragrana.common.AboutDialogFragment
 import com.rn.giragrana.databinding.FragmentListProductBinding
 import com.rn.giragrana.model.Product
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -84,8 +83,7 @@ ActionMode.Callback {
 
         binding.fabAdd.setOnClickListener {
             hideDeleteMode()
-            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
-                .navigate(R.id.action_fragmentListProduct_to_productFormFragment)
+            navigateToProductFormFragment()
         }
 
 
@@ -104,15 +102,25 @@ ActionMode.Callback {
         when (item?.itemId) {
             R.id.action_client ->
                 navigateToClientListFragment()
+            R.id.action_info -> {
+                AboutDialogFragment().show(parentFragmentManager, "sobre")
+                return true
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
 
 
-    fun navigateToClientListFragment(){
+    private fun navigateToClientListFragment(){
         val action = ProductListFragmentDirections
             .actionFragmentListProductToFragmentListClient()
         findNavController().navigate(action)
+    }
+
+    private fun navigateToProductFormFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentListProduct_to_productFormFragment)
     }
 
     private fun showProducts(products: List<Product>) {
@@ -131,10 +139,12 @@ ActionMode.Callback {
         super.onListItemClick(l, v, position, id)
         val product = l?.getItemAtPosition(position) as Product
         viewModel.selectProduct(product)
+        if(actionMode == null){
+            val action = ProductListFragmentDirections
+                .actionFragmentListProductToProductDetailsFragment(productId = product.id)
+            findNavController().navigate(action)
+        }
 
-        val action = ProductListFragmentDirections
-            .actionFragmentListProductToProductDetailsFragment(productId = product.id)
-        findNavController().navigate(action)
     }
 
     fun search(text: String = "") {

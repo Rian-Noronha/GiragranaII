@@ -3,6 +3,7 @@
     <string name="action_client">Cliente</string>
     <string name="action_info">Info</string>
     <string name="action_new_product">Novo Produto</string>
+    <string name="action_new_client">Novo Cliente</string>
 
     <string name="about_title">Dominando o Android</string>
     <string name="about_message">Desenvolvido por Rian Noronha</string>

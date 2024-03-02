@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/fragmentListProduct"
         android:name="com.rn.giragrana.list.ProductListFragment"
-        android:label="Produtos"
+        android:label="Teus Produtos"
         tools:layout="@layout/fragment_list_product"
         >
         <action
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/fragmentListClient"
         android:name="com.rn.giragrana.list.ClientListFragment"
-        android:label="Clientes"
+        android:label="Teus Clientes"
         tools:layout="@layout/fragment_list_client"
         />
 
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.rn.giragrana.details.ProductDetailsFragment"
-        android:label="Detalhes de produto"
+        android:label="Detalhes Produto"
         tools:layout="@layout/fragment_product_details"
         >
         <argument
@@ -47,12 +47,15 @@
     <fragment
         android:id="@+id/productFormFragment"
         android:name="com.rn.giragrana.form.ProductFormFragment"
-        android:label="ProductFormFragment"
+        android:label="Bote Produto"
         tools:layout="@layout/fragment_product_form"
         >
         <argument
             android:name="productId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_productFormFragment_to_fragmentListProduct"
+            app:destination="@id/fragmentListProduct" />
     </fragment>
 
 </navigation>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductFormBinding
 import com.rn.giragrana.model.Product
@@ -89,6 +90,7 @@ class ProductFormFragment : DialogFragment() {
 
                 if(viewModel.saveProduct(product)){
                     dialog?.dismiss()
+                    navigateToProductListFragment()
                 }else{
                     errorSaveProduct()
                 }
@@ -97,6 +99,11 @@ class ProductFormFragment : DialogFragment() {
         }catch (e: Exception){
             errorProductInvalid()
         }
+    }
+
+    private fun navigateToProductListFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_productFormFragment_to_fragmentListProduct)
     }
 
     companion object{

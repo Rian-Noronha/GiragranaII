@@ -8,11 +8,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ShareActionProvider
+import androidx.appcompat.widget.ShareActionProvider
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductDetailsBinding
@@ -79,7 +78,7 @@ class ProductDetailsFragment : Fragment(){
     }
 
     private fun setShareIntent(){
-        val text = getString(R.string.share_text, product?.name, product?.description)
+        val text = getString(R.string.share_text, this.product?.name, this.product?.description)
         shareActionProvider?.setShareIntent(Intent(Intent.ACTION_SEND).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
             type = "text/plain"
