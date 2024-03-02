@@ -3,8 +3,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.rn.giragrana.common.SingleLiveEvent
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.ProductRepository
@@ -45,7 +43,7 @@ class ProductListViewModel(
 
     fun selectProduct(product: Product) {
         if (inDeleteMode.value == true) {
-            toggleHotelSelected(product)
+            toggleProductSelected(product)
             if (selectedItems.size == 0) {
                 inDeleteMode.value = false
             } else {
@@ -56,7 +54,7 @@ class ProductListViewModel(
             showDetailsCommand.value = product
         }
     }
-    private fun toggleHotelSelected(product: Product) {
+    private fun toggleProductSelected(product: Product) {
         val existing = selectedItems.find { it.id == product.id }
         if (existing == null) {
             selectedItems.add(product)

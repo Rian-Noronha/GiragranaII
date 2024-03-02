@@ -208,7 +208,7 @@ ActionMode.Callback {
     }
 
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.action_delete) {
+        if (item?.itemId == R.id.action_delete_product) {
             viewModel.deleteSelected()
             return true
         }

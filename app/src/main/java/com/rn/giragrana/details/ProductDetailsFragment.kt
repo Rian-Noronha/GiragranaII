@@ -64,7 +64,7 @@ class ProductDetailsFragment : Fragment(){
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item?.itemId == R.id.action_edit){
+        if(item?.itemId == R.id.action_edit_product){
             arguments?.run {
                 val id = getLong(EXTRA_PRODUCT_ID, -1)
 
@@ -78,12 +78,18 @@ class ProductDetailsFragment : Fragment(){
     }
 
     private fun setShareIntent(){
-        val text = getString(R.string.share_text, this.product?.name, this.product?.description)
-        shareActionProvider?.setShareIntent(Intent(Intent.ACTION_SEND).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, text)
-        })
+        arguments?.run {
+            val id = getLong(EXTRA_PRODUCT_ID, -1)
+            viewModel.loadProductDetails(id).observe(viewLifecycleOwner, Observer { productLoaded ->
+                val text = getString(R.string.share_text, productLoaded?.name, productLoaded?.description)
+                shareActionProvider?.setShareIntent(Intent(Intent.ACTION_SEND).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, text)
+                })
+            })
+        }
+
     }
 
     private fun showProductDetails(product: Product){

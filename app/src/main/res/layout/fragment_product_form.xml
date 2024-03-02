@@ -29,7 +29,7 @@
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/form_label_name"
+                android:hint="@string/form_label_name_product"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 tools:ignore="TouchTargetSizeCheck" />

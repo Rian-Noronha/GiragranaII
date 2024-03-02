@@ -9,22 +9,32 @@
     <string name="about_message">Desenvolvido por Rian Noronha</string>
     <string name="about_button_site">Veja mais</string>
 
-    <string name="form_label_name">Nome</string>
+    <string name="form_label_name_product">Nome</string>
+    <string name="form_label_name_client">Nome</string>
+    <string name="form_label_contact_client">Contato</string>
     <string name="form_label_image">Imagem</string>
     <string name="form_label_price">Preço</string>
     <string name="form_label_description">Descrição</string>
     <string name="form_label_sold">Tá vendido?</string>
     <string name="fab_description">Este é o botão flutuante para adicionar um produto</string>
 
-    <string name="error_invalid_product">Produto não preenchido corretamente</string>
+    <string name="error_invalid_product">Preencha direitinho o produto</string>
+    <string name="error_invalid_client">Preencha direitnho o cliente</string>
     <string name="error_product_not_found">Produto não encontrado</string>
+    <string name="error_client_not_found">Cliente não encontrado</string>
     <string name="action_delete">Excluir</string>
     <plurals name="list_product_selected">
         <item quantity="one">1 selecionado</item>
         <item quantity="other">%d selecionados</item>
     </plurals>
 
+    <plurals name="list_client_selected">
+        <item quantity="one">1 selecionado</item>
+        <item quantity="other">%d selecionados</item>
+    </plurals>
+
     <string name="message_products_deleted">%d itens excluídos</string>
+    <string name="message_clients_deleted">%d itens excluídos</string>
     <string name="undo">Desfazer</string>
 
     <string name="action_share">Compartilhar</string>

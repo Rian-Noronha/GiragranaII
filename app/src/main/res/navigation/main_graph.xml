@@ -27,7 +27,14 @@
         android:name="com.rn.giragrana.list.ClientListFragment"
         android:label="Teus Clientes"
         tools:layout="@layout/fragment_list_client"
-        />
+        >
+        <action
+            android:id="@+id/action_fragmentListClient_to_clientFormFragment"
+            app:destination="@id/clientFormFragment" />
+        <action
+            android:id="@+id/action_fragmentListClient_to_fragmentListProduct"
+            app:destination="@id/fragmentListProduct" />
+    </fragment>
 
 
 
@@ -56,6 +63,19 @@
         <action
             android:id="@+id/action_productFormFragment_to_fragmentListProduct"
             app:destination="@id/fragmentListProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientFormFragment"
+        android:name="com.rn.giragrana.form.ClientFormFragment"
+        android:label="Bote Cliente"
+        tools:layout="@layout/fragment_client_form"
+        >
+        <argument
+            android:name="clientId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_clientFormFragment_to_fragmentListClient"
+            app:destination="@id/fragmentListClient" />
     </fragment>
 
 </navigation>
