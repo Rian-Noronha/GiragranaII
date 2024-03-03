@@ -8,4 +8,5 @@ interface ClientRepository {
     fun remove(vararg clients: Client)
     fun clientById(id:Long): LiveData<Client>
     fun search(term: String): LiveData<List<Client>>
+    fun getClientsMap(): LiveData<Map<Long, Client>>
 }

@@ -1,80 +1,68 @@
 package com.rn.giragrana.list
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.rn.giragrana.common.SingleLiveEvent
-import com.rn.giragrana.model.Product
-import com.rn.giragrana.repository.ProductRepository
-class ProductListViewModel(
-    private val repository: ProductRepository
+import com.rn.giragrana.model.Resale
+import com.rn.giragrana.repository.ResaleRepository
+
+class ResaleListViewModel(
+    private val repository: ResaleRepository
 ) : ViewModel(){
 
-    var productIdSelected: Long = -1
+    var resaleIdSelected: Long = -1
     private val searchTerm = MutableLiveData<String>()
-    private val products: LiveData<List<Product>> = searchTerm.switchMap { term ->
+    private val resales: LiveData<List<Resale>> = searchTerm.switchMap { term ->
         repository.search("%$term")
     }
     private val inDeleteMode = MutableLiveData<Boolean>().apply {
         value = false
     }
-    private val selectedItems = mutableListOf<Product>()
+    private val selectedItems = mutableListOf<Resale>()
     private val selectionCount = MutableLiveData<Int>()
-    private val selectedProducts = MutableLiveData<List<Product>>().apply {
+    private val selectedResales = MutableLiveData<List<Resale>>().apply {
         value = selectedItems
     }
-    private val deletedItems = mutableListOf<Product>()
+    private val deletedItems = mutableListOf<Resale>()
     private val showDeletedMessage = SingleLiveEvent<Int>()
-    private val showDetailsCommand = SingleLiveEvent<Product>()
+    private val showDetailsCommand = SingleLiveEvent<Resale>()
 
     fun isInDeleteMode(): LiveData<Boolean> = inDeleteMode
 
-    private val _productsMap = MutableLiveData<Map<Long, Product>>()
-    val productsMap: LiveData<Map<Long, Product>> get() = _productsMap
-
-    init {
-        repository.getProductsMap().observeForever { map ->
-            _productsMap.value = map
-        }
-    }
-
     fun getSearchTerm(): LiveData<String>? = searchTerm
 
-    fun getProducts(): LiveData<List<Product>>? = products
+    fun getResales(): LiveData<List<Resale>>? = resales
 
     fun selectionCount(): LiveData<Int> = selectionCount
 
-    fun selectedProducts(): LiveData<List<Product>> = selectedProducts
+    fun selectedResales(): LiveData<List<Resale>> = selectedResales
 
     fun showDeletedMessage(): LiveData<Int> = showDeletedMessage
 
-    fun showDetailsCommand(): LiveData<Product> = showDetailsCommand
+    fun showDetailsCommand(): LiveData<Resale> = showDetailsCommand
 
 
-    fun productById(productId: Long): LiveData<Product>{
-        return repository.productById(productId)
-    }
-
-
-    fun selectProduct(product: Product) {
+    fun selectResale(resale: Resale) {
         if (inDeleteMode.value == true) {
-            toggleProductSelected(product)
+            toggleResaleSelected(resale)
             if (selectedItems.size == 0) {
                 inDeleteMode.value = false
             } else {
                 selectionCount.value = selectedItems.size
-                selectedProducts.value = selectedItems
+                selectedResales.value = selectedItems
             }
         } else {
-            showDetailsCommand.value = product
+            showDetailsCommand.value = resale
         }
     }
-    private fun toggleProductSelected(product: Product) {
-        val existing = selectedItems.find { it.id == product.id }
+    private fun toggleResaleSelected(resale: Resale) {
+        val existing = selectedItems.find { it.id == resale.id }
         if (existing == null) {
-            selectedItems.add(product)
+            selectedItems.add(resale)
         } else {
-            selectedItems.removeAll { it.id == product.id }
+            selectedItems.removeAll { it.id == resale.id }
         }
     }
     fun search(term: String = "") {
@@ -84,7 +72,7 @@ class ProductListViewModel(
         if (!deleteMode) {
             selectionCount.value = 0
             selectedItems.clear()
-            selectedProducts.value = selectedItems
+            selectedResales.value = selectedItems
             showDeletedMessage.value = selectedItems.size
         }
         inDeleteMode.value = deleteMode
@@ -99,9 +87,9 @@ class ProductListViewModel(
     }
     fun undoDelete() {
         if (deletedItems.isNotEmpty()) {
-            for (hotel in deletedItems) {
-                hotel.id = 0L
-                repository.save(hotel)
+            for (resale in deletedItems) {
+                resale.id = 0L
+                repository.save(resale)
             }
         }
     }

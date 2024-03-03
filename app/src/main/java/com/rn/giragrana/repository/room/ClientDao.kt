@@ -8,9 +8,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.rn.giragrana.model.Client
+import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.sqlite.CLIENT_COLUMN_ID
 import com.rn.giragrana.repository.sqlite.CLIENT_COLUMN_NAME
 import com.rn.giragrana.repository.sqlite.TABLE_CLIENT
+import com.rn.giragrana.repository.sqlite.TABLE_PRODUCT
 
 @Dao
 interface ClientDao {
@@ -24,4 +26,7 @@ interface ClientDao {
     fun clientById(id: Long): LiveData<Client>
     @Query("""SELECT * FROM $TABLE_CLIENT WHERE $CLIENT_COLUMN_NAME LIKE :query ORDER BY $CLIENT_COLUMN_NAME""")
     fun search(query: String) : LiveData<List<Client>>
+
+    @Query("""SELECT * FROM $TABLE_CLIENT""")
+    fun getAllClients(): LiveData<List<Client>>
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.rn.giragrana.common.SingleLiveEvent
 import com.rn.giragrana.model.Client
+import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.ClientRepository
 
 class ClientListViewModel(
@@ -27,6 +28,17 @@ class ClientListViewModel(
     private val deletedItems = mutableListOf<Client>()
     private val showDeleteMessage = SingleLiveEvent<Int>()
     private val showDetailsCommand = SingleLiveEvent<Client>()
+
+
+    private val _clientsMap = MutableLiveData<Map<Long, Client>>()
+    val clientsMap: LiveData<Map<Long, Client>> get() = _clientsMap
+
+    init {
+        repository.getClientsMap().observeForever { map ->
+            _clientsMap.value = map
+        }
+    }
+
 
     fun isInDeleteMode(): LiveData<Boolean> = inDeleteMode
     fun getSearchTerm(): LiveData<String>? = searchTerm

@@ -91,9 +91,15 @@ class ClientListFragment :
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item?.itemId){
+
+            android.R.id.home -> {
+                navigateToProductListFragment()
+            }
+
             R.id.action_new_client ->
                 navigateToClientFormFrament()
         }
@@ -217,6 +223,13 @@ class ClientListFragment :
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListClient_to_clientFormFragment)
     }
+
+    fun navigateToProductListFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentListClient_to_fragmentListProduct)
+    }
+
+    fun
 
     interface OnClientClickListener{
         fun onClientClick(client: Client)

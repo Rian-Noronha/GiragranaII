@@ -34,6 +34,7 @@ data class Resale(
     var productId: Long = 0,
     @ColumnInfo(name = RESALE_COLUMN_CLIENT_ID)
     var clientId: Long = 0,
+    var resalePrice: Float = 0.0F,
     var date:String = "",
     var receivingDate:String = "",
     var paymentMethod:String = "",

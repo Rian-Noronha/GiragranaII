@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_fragmentListProduct_to_productFormFragment"
             app:destination="@id/productFormFragment" />
+        <action
+            android:id="@+id/action_fragmentListProduct_to_resaleListFragment"
+            app:destination="@id/resaleListFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
@@ -76,6 +79,29 @@
         <action
             android:id="@+id/action_clientFormFragment_to_fragmentListClient"
             app:destination="@id/fragmentListClient" />
+    </fragment>
+    <fragment
+        android:id="@+id/resaleListFragment"
+        android:name="com.rn.giragrana.list.ResaleListFragment"
+        android:label="ResaleListFragment"
+        tools:layout="@layout/fragment_list_resale"
+        >
+        <action
+            android:id="@+id/action_resaleListFragment_to_resaleFormFragment"
+            app:destination="@id/resaleFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resaleFormFragment"
+        android:name="com.rn.giragrana.form.ResaleFormFragment"
+        android:label="ResaleFormFragment"
+        tools:layout="@layout/fragment_resale_form"
+        >
+        <action
+            android:id="@+id/action_resaleFormFragment_to_resaleListFragment"
+            app:destination="@id/resaleListFragment" />
+        <argument
+            android:name="resaleId"
+            app:argType="long" />
     </fragment>
 
 </navigation>

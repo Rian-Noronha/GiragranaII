@@ -102,6 +102,9 @@ ActionMode.Callback {
         when (item?.itemId) {
             R.id.action_client ->
                 navigateToClientListFragment()
+            R.id.action_resale -> {
+                navigateToResaleListFrament()
+            }
             R.id.action_info -> {
                 AboutDialogFragment().show(parentFragmentManager, "sobre")
                 return true
@@ -116,6 +119,11 @@ ActionMode.Callback {
         val action = ProductListFragmentDirections
             .actionFragmentListProductToFragmentListClient()
         findNavController().navigate(action)
+    }
+
+    private fun navigateToResaleListFrament(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentListProduct_to_resaleListFragment)
     }
 
     private fun navigateToProductFormFragment(){

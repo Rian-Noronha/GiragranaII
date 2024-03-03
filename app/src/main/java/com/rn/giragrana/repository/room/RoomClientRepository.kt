@@ -1,6 +1,7 @@
 package com.rn.giragrana.repository.room
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import com.rn.giragrana.model.Client
 import com.rn.giragrana.repository.ClientRepository
 
@@ -28,6 +29,17 @@ class RoomClientRepository(
 
     override fun search(term: String): LiveData<List<Client>>{
         return clientDao.search(term)
+    }
+
+    override fun getClientsMap(): LiveData<Map<Long, Client>> {
+        val result = MediatorLiveData<Map<Long, Client>>()
+        val allClientsLiveData = clientDao.getAllClients()
+
+        result.addSource(allClientsLiveData) { clients ->
+            result.value = clients.associateBy { it.id }
+        }
+
+        return result
     }
 
 }

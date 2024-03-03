@@ -24,4 +24,8 @@ interface ProductDao {
 
     @Query("""SELECT * FROM $TABLE_PRODUCT WHERE $PRODUCT_COLUMN_NAME LIKE :query ORDER BY $PRODUCT_COLUMN_NAME""")
     fun search(query: String): LiveData<List<Product>>
+
+    @Query("""SELECT * FROM $TABLE_PRODUCT""")
+    fun getAllProducts(): LiveData<List<Product>>
+
 }

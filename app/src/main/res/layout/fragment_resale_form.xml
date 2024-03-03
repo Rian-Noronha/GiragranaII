@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <!-- Rótulo da porcentagem -->
+        <TextView
+            android:id="@+id/txtChoiceProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_choice_product"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Spinner para escolher o produto -->
+        <Spinner
+            android:id="@+id/spinnerProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp" />
+
+        <!-- Rótulo da porcentagem -->
+        <TextView
+            android:id="@+id/txtChoiceClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_choice_client"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Spinner para escolher o cliente -->
+        <Spinner
+            android:id="@+id/spinnerClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp" />
+
+
+        <!-- TextInputLayout para o preço de revenda -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_label_product_price"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- TextInputLayout para o preço de revenda -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilResalePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtResalePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_label_resale_price"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- SeekBar para ajustar a porcentagem do preço -->
+        <SeekBar
+            android:id="@+id/seekBarProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Rótulo da porcentagem -->
+        <TextView
+            android:id="@+id/txtProfitPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/form_label_profit_percentage"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- TextInputLayout para a data -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_label_date"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TextInputLayout para a data de recebimento -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilReceivingDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtReceivingDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_label_receiving_date"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TextInputLayout para o método de pagamento -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_label_payment_method"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</ScrollView>
+
