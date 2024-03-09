@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductFormBinding
 import com.rn.giragrana.model.Product
+import com.rn.giragrana.utils.PriceUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductFormFragment : DialogFragment() {
 
@@ -56,7 +57,7 @@ class ProductFormFragment : DialogFragment() {
         binding.edtName.setText(product.name)
         binding.edtDescription.setText(product.description)
         binding.edtImage.setText(product.image)
-        binding.edtPrice.setText(product.price.toString())
+        binding.edtPrice.setText(PriceUtils.formatPrice(product.price))
         binding.switchSold.isChecked = product.sold
     }
 

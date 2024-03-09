@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductDetailsBinding
 import com.rn.giragrana.model.Product
+import com.rn.giragrana.utils.PriceUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductDetailsFragment : Fragment(){
     private val viewModel: ProductDetailsViewModel by viewModel()
@@ -95,7 +96,7 @@ class ProductDetailsFragment : Fragment(){
     private fun showProductDetails(product: Product){
         this.product = product
         binding.txtName.text = product.name
-        binding.txtPrice.text = product.price.toString()
+        binding.txtPrice.text = PriceUtils.formatPrice(product.price)
         binding.txtDesciption.text = product.description
         binding.txtImage.text = product.image
     }

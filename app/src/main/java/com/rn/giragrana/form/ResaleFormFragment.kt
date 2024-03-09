@@ -17,6 +17,7 @@ import com.rn.giragrana.databinding.FragmentResaleFormBinding
 import com.rn.giragrana.list.ClientListViewModel
 import com.rn.giragrana.list.ProductListViewModel
 import com.rn.giragrana.model.Resale
+import com.rn.giragrana.utils.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -117,16 +118,9 @@ class ResaleFormFragment : DialogFragment() {
 
     private fun showResale(resale: Resale){
         binding.edtResalePrice.setText(resale.resalePrice.toString())
-        val currentDate = getCurrentFormattedDate()
-        binding.edtDate.setText(currentDate)
+        val currentDate = DateUtils.getCurrentFormattedDate()
         binding.edtReceivingDate.setText(resale.receivingDate)
         binding.edtPaymentMethod.setText(resale.paymentMethod)
-    }
-
-    private fun getCurrentFormattedDate(): String {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val currentDate = Calendar.getInstance().time
-        return dateFormat.format(currentDate)
     }
 
     fun searchProducts(text: String = "") {
@@ -170,14 +164,13 @@ class ResaleFormFragment : DialogFragment() {
                 val selectedClient = viewModelClient.getClients()?.value?.get(selectedClientPosition)
                 val clientId = selectedClient?.id ?: 0
 
-                val date = binding.edtDate.text.toString()
                 val receivingDate = binding.edtReceivingDate.text.toString()
                 val paymentMethod = binding.edtPaymentMethod.text.toString()
 
                 resale.productId = productId
                 resale.clientId = clientId
                 resale.resalePrice = binding.edtResalePrice.text.toString().toFloat()
-                resale.date = date
+                resale.date = DateUtils.getCurrentFormattedDate()
                 resale.receivingDate = receivingDate
                 resale.paymentMethod = paymentMethod
 

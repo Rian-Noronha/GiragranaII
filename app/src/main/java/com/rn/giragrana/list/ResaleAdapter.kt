@@ -10,6 +10,7 @@ import com.rn.giragrana.databinding.ItemResaleBinding
 import com.rn.giragrana.model.Client
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
+import com.rn.giragrana.utils.PriceUtils
 
 class ResaleAdapter(
     context: Context,
@@ -35,8 +36,8 @@ class ResaleAdapter(
         val client = clientsMap[clientId]
 
         viewHolder.txtProductName.text = product?.name
-        viewHolder.txtProductPrice.text = product?.price.toString()
-        viewHolder.txtPriceResale.text = resale?.resalePrice.toString()
+        viewHolder.txtProductPrice.text = product?.price?.let { PriceUtils.formatPrice(it) }
+        viewHolder.txtPriceResale.text = resale?.let { PriceUtils.formatPrice(it.resalePrice) }
         viewHolder.txtClientName.text = client?.name
         viewHolder.txtClientContact.text = client?.contact
         viewHolder.txtDate.text = resale?.date
