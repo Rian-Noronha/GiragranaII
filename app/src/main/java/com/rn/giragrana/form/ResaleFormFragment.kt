@@ -58,8 +58,6 @@ class ResaleFormFragment : DialogFragment() {
                     val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
                     val productId = selectedProduct?.id ?: 0
 
-
-
                     binding.edtProductPrice.setText(selectedProduct?.price.toString())
 
                     val productPrice = selectedProduct?.price
@@ -172,20 +170,13 @@ class ResaleFormFragment : DialogFragment() {
                 val selectedClient = viewModelClient.getClients()?.value?.get(selectedClientPosition)
                 val clientId = selectedClient?.id ?: 0
 
-
-                val resalePrice = binding.edtResalePrice.text.toString().toFloatOrNull() ?: 0.0f
-                val profitPercentage = binding.seekBarProfit.progress.toFloat()
                 val date = binding.edtDate.text.toString()
                 val receivingDate = binding.edtReceivingDate.text.toString()
                 val paymentMethod = binding.edtPaymentMethod.text.toString()
 
-
-                val calculatedResalePrice = calculateResalePrice(resalePrice, profitPercentage)
-
-
                 resale.productId = productId
                 resale.clientId = clientId
-                resale.resalePrice = calculatedResalePrice
+                resale.resalePrice = binding.edtResalePrice.text.toString().toFloat()
                 resale.date = date
                 resale.receivingDate = receivingDate
                 resale.paymentMethod = paymentMethod

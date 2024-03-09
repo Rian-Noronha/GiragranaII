@@ -120,8 +120,11 @@ class ResaleListFragment :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
-            R.id.action_new_resale ->
+            android.R.id.home ->
+                navigateToProductListFragment()
+            R.id.action_new_resale ->{
                 navigateToResaleFormFragment()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -130,6 +133,11 @@ class ResaleListFragment :
     private fun navigateToResaleFormFragment(){
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_resaleListFragment_to_resaleFormFragment)
+    }
+
+    private fun navigateToProductListFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_resaleListFragment_to_fragmentListProduct)
     }
 
 

@@ -83,17 +83,20 @@
     <fragment
         android:id="@+id/resaleListFragment"
         android:name="com.rn.giragrana.list.ResaleListFragment"
-        android:label="ResaleListFragment"
+        android:label="Tuas Revendas"
         tools:layout="@layout/fragment_list_resale"
         >
         <action
             android:id="@+id/action_resaleListFragment_to_resaleFormFragment"
             app:destination="@id/resaleFormFragment" />
+        <action
+            android:id="@+id/action_resaleListFragment_to_fragmentListProduct"
+            app:destination="@id/fragmentListProduct" />
     </fragment>
     <fragment
         android:id="@+id/resaleFormFragment"
         android:name="com.rn.giragrana.form.ResaleFormFragment"
-        android:label="ResaleFormFragment"
+        android:label="Bote uma revenda"
         tools:layout="@layout/fragment_resale_form"
         >
         <action
