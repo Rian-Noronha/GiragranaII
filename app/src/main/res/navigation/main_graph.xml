@@ -112,7 +112,7 @@
     <fragment
         android:id="@+id/tabsFragment"
         android:name="com.rn.giragrana.list.TabsFragment"
-        android:label="TabsFragment"
+        android:label="Espie Só"
         tools:layout="@layout/fragment_tabs"
         />
 

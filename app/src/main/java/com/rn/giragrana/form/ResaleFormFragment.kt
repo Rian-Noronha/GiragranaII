@@ -52,16 +52,19 @@ class ResaleFormFragment : DialogFragment() {
                 binding.txtProfitPercentage.text = getString(R.string.form_label_profit_percentage, progress)
 
                 arguments?.run{
-                    val selectedProductPosition = binding.spinnerProduct.selectedItemPosition
-                    val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
-                    val productId = selectedProduct?.id ?: 0
+                    if(binding.spinnerProduct.selectedItemPosition != -1){
+                        val selectedProductPosition = binding.spinnerProduct.selectedItemPosition
+                        val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
+                        val productId = selectedProduct?.id ?: 0
+                        binding.edtProductPrice.setText(selectedProduct?.price.toString())
 
-                    binding.edtProductPrice.setText(selectedProduct?.price.toString())
+                        val productPrice = selectedProduct?.price
+                        val profitPercentage = binding.seekBarProfit.progress.toFloat()
 
-                    val productPrice = selectedProduct?.price
-                    val profitPercentage = binding.seekBarProfit.progress.toFloat()
-
-                    binding.edtResalePrice.setText(calculateResalePrice(productPrice, profitPercentage).toString())
+                        binding.edtResalePrice.setText(calculateResalePrice(productPrice, profitPercentage).toString())
+                    }else{
+                        Toast.makeText(requireContext(), R.string.error_resales, Toast.LENGTH_LONG).show()
+                    }
 
                 }
 
