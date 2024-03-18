@@ -18,6 +18,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/fab_description"
+        android:backgroundTint="@color/colorFAB"
         android:tint="@android:color/white"
         app:srcCompat="@drawable/ic_add"
         app:borderWidth="0dp"

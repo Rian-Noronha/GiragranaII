@@ -2,6 +2,7 @@
     <string name="app_name">Giragrana</string>
     <string name="action_client">Cliente</string>
     <string name="action_resale">Revenda</string>
+    <string name="action_venha_ca">Venha cá</string>
     <string name="action_info">Info</string>
     <string name="action_new_product">Novo Produto</string>
     <string name="action_new_client">Novo Cliente</string>
@@ -62,5 +63,8 @@
     <string name="form_label_product_price">Por quanto tá:</string>
     <string name="txt_choice_client">Meu cliente é:</string>
     <string name="txt_choice_product">Vou vender:</string>
+
+    <string name="tab_description">Tab Layout</string>
+    <string name="view_pager_description">View Pager Layout</string>
 
 </resources>

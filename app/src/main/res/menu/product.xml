@@ -11,6 +11,13 @@
         android:icon="@android:drawable/ic_menu_view"
         android:title="@string/action_resale"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_venha_ca"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/action_venha_ca"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_info"
         android:icon="@android:drawable/ic_menu_info_details"

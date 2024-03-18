@@ -105,6 +105,11 @@ ActionMode.Callback {
             R.id.action_resale -> {
                 navigateToResaleListFrament()
             }
+
+            R.id.action_venha_ca -> {
+                navigateToTabsFragment()
+            }
+
             R.id.action_info -> {
                 AboutDialogFragment().show(parentFragmentManager, "sobre")
                 return true
@@ -129,6 +134,11 @@ ActionMode.Callback {
     private fun navigateToProductFormFragment(){
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListProduct_to_productFormFragment)
+    }
+
+    private fun navigateToTabsFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentListProduct_to_tabsFragment)
     }
 
     private fun showProducts(products: List<Product>) {

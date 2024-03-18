@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_fragmentListProduct_to_resaleListFragment"
             app:destination="@id/resaleListFragment" />
+        <action
+            android:id="@+id/action_fragmentListProduct_to_tabsFragment"
+            app:destination="@id/tabsFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
@@ -106,5 +109,11 @@
             android:name="resaleId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="com.rn.giragrana.list.TabsFragment"
+        android:label="TabsFragment"
+        tools:layout="@layout/fragment_tabs"
+        />
 
 </navigation>
