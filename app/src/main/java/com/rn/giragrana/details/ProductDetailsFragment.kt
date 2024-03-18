@@ -104,7 +104,6 @@ class ProductDetailsFragment : Fragment(){
     private fun errorProductNotFound(){
         binding.txtName.text = getString(R.string.error_product_not_found)
         binding.txtDesciption.visibility = View.GONE
-        binding.txtImage.visibility = View.GONE
         binding.txtPrice.visibility = View.GONE
     }
 
