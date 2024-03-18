@@ -51,21 +51,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/form_label_image"
-                android:imeOptions="actionNext"
-                android:inputType="textCapWords"
-                tools:ignore="TouchTargetSizeCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPrice"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

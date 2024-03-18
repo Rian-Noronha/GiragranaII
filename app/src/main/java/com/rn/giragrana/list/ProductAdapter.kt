@@ -23,7 +23,7 @@ class ProductAdapter(context: Context, products: List<Product>):
         }
 
         val viewHolder = ViewHolder(binding)
-        viewHolder.txtImage.text = product?.image
+        viewHolder.txtName.text = product?.name
         if(product?.sold == true){
             viewHolder.txtSold.text = "Tá vendido"
         }else{
@@ -34,7 +34,7 @@ class ProductAdapter(context: Context, products: List<Product>):
     }
 
     class ViewHolder(val binding: ItemProductBinding){
-        val txtImage: TextView = binding.txtImage
+        val txtName: TextView = binding.txtName
         val txtSold: TextView = binding.txtSold
     }
 

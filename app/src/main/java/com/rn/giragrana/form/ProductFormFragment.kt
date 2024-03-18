@@ -56,7 +56,6 @@ class ProductFormFragment : DialogFragment() {
     private fun showProduct(product: Product){
         binding.edtName.setText(product.name)
         binding.edtDescription.setText(product.description)
-        binding.edtImage.setText(product.image)
         binding.edtPrice.setText(PriceUtils.formatPrice(product.price))
         binding.switchSold.isChecked = product.sold
     }
@@ -85,7 +84,6 @@ class ProductFormFragment : DialogFragment() {
                 product.id = productId
                 product.name = binding.edtName.text.toString()
                 product.description = binding.edtDescription.text.toString()
-                product.image = binding.edtImage.text.toString()
                 product.price = binding.edtPrice.text.toString().toFloat()
                 product.sold = binding.switchSold.isChecked
 

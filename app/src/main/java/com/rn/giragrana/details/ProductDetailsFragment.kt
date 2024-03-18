@@ -98,7 +98,6 @@ class ProductDetailsFragment : Fragment(){
         binding.txtName.text = product.name
         binding.txtPrice.text = PriceUtils.formatPrice(product.price)
         binding.txtDesciption.text = product.description
-        binding.txtImage.text = product.image
     }
 
 

@@ -19,9 +19,6 @@ import com.rn.giragrana.list.ProductListViewModel
 import com.rn.giragrana.model.Resale
 import com.rn.giragrana.utils.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
-import java.util.*
-
 class ResaleFormFragment : DialogFragment() {
     private val viewModel: ResaleFormViewModel by viewModel()
     private val viewModelProduct: ProductListViewModel by viewModel()
@@ -118,7 +115,6 @@ class ResaleFormFragment : DialogFragment() {
 
     private fun showResale(resale: Resale){
         binding.edtResalePrice.setText(resale.resalePrice.toString())
-        val currentDate = DateUtils.getCurrentFormattedDate()
         binding.edtReceivingDate.setText(resale.receivingDate)
         binding.edtPaymentMethod.setText(resale.paymentMethod)
     }
