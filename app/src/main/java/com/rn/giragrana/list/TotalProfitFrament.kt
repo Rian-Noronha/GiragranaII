@@ -42,11 +42,7 @@ class TotalProfitFrament : Fragment(){
 
     private fun updateTotalProfit(products: List<Product>, resales: List<Resale>) {
         val totalProfit = calculateSumOfResales(resales) - calculateSumOfProducts(products)
-        if(totalProfit > 0){
-            binding.txtTotalProfit.text = PriceUtils.formatPrice(totalProfit)
-        }else{
-            binding.txtTotalProfit.text = PriceUtils.formatPrice(0f)
-        }
+        binding.txtTotalProfit.text = PriceUtils.formatPrice(totalProfit)
     }
 
     private fun calculateSumOfResales(resales: List<Resale>): Float {
