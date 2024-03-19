@@ -16,6 +16,7 @@ import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentResaleFormBinding
 import com.rn.giragrana.list.ClientListViewModel
 import com.rn.giragrana.list.ProductListViewModel
+import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
 import com.rn.giragrana.utils.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -80,9 +81,14 @@ class ResaleFormFragment : DialogFragment() {
 
         viewModelProduct.getProducts()?.observe(viewLifecycleOwner, Observer { products ->
             if (products != null) {
-                val productAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, products)
+                val productsToShow = products.filter { !it.sold }
+                val productNamesWithInfo = productsToShow.map { "${it.name} - ID: ${it.id}" }
+
+                val productAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, productNamesWithInfo)
                 productAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerProduct.adapter = productAdapter
+            }else{
+                Toast.makeText(requireContext(), R.string.error_spinner_products, Toast.LENGTH_LONG).show()
             }
         })
 

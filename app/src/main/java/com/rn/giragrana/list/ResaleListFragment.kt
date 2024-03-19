@@ -15,6 +15,7 @@ import androidx.fragment.app.ListFragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentListResaleBinding
@@ -158,7 +159,9 @@ class ResaleListFragment :
         val resale = l?.getItemAtPosition(position) as Resale
         viewModelResale.selectResale(resale)
         if(actionMode == null){
-            //ir à tela de ResaleFormFragment passando o id daqui.
+           val action = ResaleListFragmentDirections
+               .actionResaleListFragmentToResaleFormFragment(resaleId = resale.id)
+            findNavController().navigate(action)
         }
 
     }

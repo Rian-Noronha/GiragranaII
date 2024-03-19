@@ -23,6 +23,7 @@ class ProductAdapter(context: Context, products: List<Product>):
         }
 
         val viewHolder = ViewHolder(binding)
+        viewHolder.txtId.text = product?.id.toString()
         viewHolder.txtName.text = product?.name
         if(product?.sold == true){
             viewHolder.txtSold.text = "Tá vendido"
@@ -34,8 +35,10 @@ class ProductAdapter(context: Context, products: List<Product>):
     }
 
     class ViewHolder(val binding: ItemProductBinding){
+        val txtId: TextView = binding.txtId
         val txtName: TextView = binding.txtName
         val txtSold: TextView = binding.txtSold
+
     }
 
 }
