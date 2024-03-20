@@ -1,6 +1,5 @@
 package com.rn.giragrana.form
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,15 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentResaleFormBinding
 import com.rn.giragrana.list.ClientListViewModel
 import com.rn.giragrana.list.ProductListViewModel
-import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
 import com.rn.giragrana.utils.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 class ResaleFormFragment : DialogFragment() {
     private val viewModel: ResaleFormViewModel by viewModel()
     private val viewModelProduct: ProductListViewModel by viewModel()
@@ -32,15 +30,9 @@ class ResaleFormFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentResaleFormBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,10 +40,10 @@ class ResaleFormFragment : DialogFragment() {
         arguments?.run{
             val resaleId =  arguments?.getLong(EXTRA_RESALE_ID, 0)?:0
             if(resaleId > 0){
-                viewModel.loadResale(resaleId).observe(viewLifecycleOwner, Observer { loadedResale ->
+                viewModel.loadResale(resaleId).observe(viewLifecycleOwner) { loadedResale ->
                     resale = loadedResale
                     showResale(loadedResale)
-                })
+                }
             }
         }
 
@@ -63,7 +55,7 @@ class ResaleFormFragment : DialogFragment() {
                     if(binding.spinnerProduct.selectedItemPosition != -1){
                         val selectedProductPosition = binding.spinnerProduct.selectedItemPosition
                         val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
-                        val productId = selectedProduct?.id ?: 0
+                        selectedProduct?.id ?: 0
                         binding.edtProductPrice.setText(selectedProduct?.price.toString())
 
                         val productPrice = selectedProduct?.price
@@ -86,27 +78,33 @@ class ResaleFormFragment : DialogFragment() {
             }
         })
 
-        viewModelProduct.getProducts()?.observe(viewLifecycleOwner, Observer { products ->
+        viewModelProduct.getProducts()?.observe(viewLifecycleOwner) { products ->
             if (products != null) {
                 val productsToShow = products.filter { !it.sold }
                 val productNamesWithInfo = productsToShow.map { "${it.name} - ID: ${it.id}" }
 
-                val productAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, productNamesWithInfo)
+                val productAdapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    productNamesWithInfo
+                )
                 productAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerProduct.adapter = productAdapter
-            }else{
-                Toast.makeText(requireContext(), R.string.error_spinner_products, Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), R.string.error_spinner_products, Toast.LENGTH_LONG)
+                    .show()
             }
-        })
+        }
 
 
-        viewModelClient.getClients()?.observe(viewLifecycleOwner, Observer { clients ->
-            if(clients != null){
-                val clientAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, clients)
+        viewModelClient.getClients()?.observe(viewLifecycleOwner) { clients ->
+            if (clients != null) {
+                val clientAdapter =
+                    ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, clients)
                 clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerClient.adapter = clientAdapter
             }
-        })
+        }
 
 
         if (viewModelProduct.getProducts()?.value == null) {
@@ -135,11 +133,11 @@ class ResaleFormFragment : DialogFragment() {
         binding.edtPaymentMethod.setText(resale.paymentMethod)
     }
 
-    fun searchProducts(text: String = "") {
+    private fun searchProducts(text: String = "") {
         viewModelProduct.search(text)
     }
 
-    fun searchClientes(text: String = "") {
+    private fun searchClientes(text: String = "") {
         viewModelClient.search(text)
     }
 
@@ -205,7 +203,7 @@ class ResaleFormFragment : DialogFragment() {
         return (originalPrice?.times(profitMultiplier) ?: 0) as Float
     }
 
-    fun navigateToResaleListFrament(){
+    private fun navigateToResaleListFrament(){
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_resaleFormFragment_to_resaleListFragment)
     }

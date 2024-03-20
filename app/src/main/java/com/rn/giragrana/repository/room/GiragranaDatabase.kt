@@ -29,8 +29,5 @@ abstract class GiragranaDatabase : RoomDatabase(){
             }
             return instance as GiragranaDatabase
         }
-        fun destroyInstance() {
-            instance = null
-        }
     }
 }

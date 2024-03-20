@@ -14,12 +14,11 @@ class ClientAdapter(
 ) : ArrayAdapter<Client>(context, 0, clients) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ItemClientBinding
         val client = getItem(position)
-        if (convertView == null) {
-            binding = ItemClientBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding: ItemClientBinding = if (convertView == null) {
+            ItemClientBinding.inflate(LayoutInflater.from(context), parent, false)
         } else {
-            binding = ItemClientBinding.bind(convertView)
+            ItemClientBinding.bind(convertView)
         }
 
         val viewHolder = ViewHolder(binding)

@@ -1,7 +1,6 @@
 package com.rn.giragrana.auth
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +15,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentLoginBinding
-import com.google.firebase.auth.GoogleAuthProvider
 
+@Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
 
     companion object {
@@ -35,17 +35,13 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         auth = Firebase.auth
@@ -58,6 +54,7 @@ class LoginFragment : Fragment() {
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SIGN_IN) {

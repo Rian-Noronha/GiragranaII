@@ -1,8 +1,6 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.appcompat.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,9 +10,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.ListFragment
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -24,6 +21,7 @@ import com.rn.giragrana.databinding.FragmentListClientBinding
 import com.rn.giragrana.model.Client
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+@Suppress("DEPRECATION")
 class ClientListFragment :
     ListFragment(),
     AdapterView.OnItemLongClickListener,
@@ -35,75 +33,73 @@ class ClientListFragment :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentListClientBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listView: ListView = view.findViewById(android.R.id.list)
         listView.onItemLongClickListener = this
-        viewModel.showDetailsCommand().observe(viewLifecycleOwner, Observer { client ->
-            if(client != null){
+        viewModel.showDetailsCommand().observe(viewLifecycleOwner) { client ->
+            if (client != null) {
                 showClientDetails(client)
             }
-        })
+        }
 
-        viewModel.isInDeleteMode().observe(viewLifecycleOwner, Observer { deleteMode ->
-            if(deleteMode == true){
+        viewModel.isInDeleteMode().observe(viewLifecycleOwner) { deleteMode ->
+            if (deleteMode == true) {
                 showDeleteMode()
-            }else{
+            } else {
                 hideDeleteMode()
             }
-        })
+        }
 
-        viewModel.selectedClients().observe(viewLifecycleOwner, Observer { clients ->
-            if(clients != null){
+        viewModel.selectedClients().observe(viewLifecycleOwner) { clients ->
+            if (clients != null) {
                 showSelectedClients(clients)
             }
-        })
+        }
 
-        viewModel.selectionCount().observe(viewLifecycleOwner, Observer { count ->
-            if(count != null){
+        viewModel.selectionCount().observe(viewLifecycleOwner) { count ->
+            if (count != null) {
                 updateSelectionCountText(count)
             }
-        })
+        }
 
-        viewModel.showDeletedMessage().observe(viewLifecycleOwner, Observer { count ->
-            if(count != null && count > 0){
+        viewModel.showDeletedMessage().observe(viewLifecycleOwner) { count ->
+            if (count != null && count > 0) {
                 showMessageClientsDeleted(count)
             }
-        })
+        }
 
-        viewModel.getClients()?.observe(viewLifecycleOwner, Observer { clients ->
-            if(clients != null){
+        viewModel.getClients()?.observe(viewLifecycleOwner) { clients ->
+            if (clients != null) {
                 showClients(clients)
             }
-        })
+        }
 
         if(viewModel.getClients()?.value == null){
             search()
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.client, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item?.itemId){
+        when(item.itemId){
 
             android.R.id.home -> {
                 navigateToProductListFragment()
@@ -118,7 +114,7 @@ class ClientListFragment :
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)
-        val client = l?.getItemAtPosition(position) as Client
+        val client = l.getItemAtPosition(position) as Client
         viewModel.selectClient(client)
         if(actionMode == null){
             val action = ClientListFragmentDirections
@@ -164,21 +160,21 @@ class ClientListFragment :
         viewModel.setInDeleteMode(false)
     }
 
-    fun showClientDetails(client: Client){
+    private fun showClientDetails(client: Client){
         if(activity is OnClientClickListener){
             val listener = activity as OnClientClickListener
             listener.onClientClick(client)
         }
     }
 
-    fun showDeleteMode(){
+    private fun showDeleteMode(){
         val appCompatActivity = (activity as AppCompatActivity)
         actionMode = appCompatActivity.startSupportActionMode(this)
         listView.onItemLongClickListener = null
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
     }
 
-    fun hideDeleteMode(){
+    private fun hideDeleteMode(){
         listView.onItemLongClickListener = this
         for(i in 0 until listView.count){
             listView.setItemChecked(i, false)
@@ -191,7 +187,7 @@ class ClientListFragment :
 
     }
 
-    fun showSelectedClients(clients: List<Client>){
+    private fun showSelectedClients(clients: List<Client>){
         listView.post{
             for(i in 0 until listView.count){
                 val client = listView.getItemAtPosition(i) as Client
@@ -202,7 +198,7 @@ class ClientListFragment :
         }
     }
 
-    fun updateSelectionCountText(count: Int){
+    private fun updateSelectionCountText(count: Int){
         view?.post{
             actionMode?.title = resources.getQuantityString(R.plurals.list_client_selected, count, count)
         }
@@ -219,7 +215,7 @@ class ClientListFragment :
             .show()
     }
 
-    fun showClients(clients: List<Client>){
+    private fun showClients(clients: List<Client>){
         val adapter = ClientAdapter(requireContext(), clients)
         listAdapter = adapter
     }
@@ -228,12 +224,12 @@ class ClientListFragment :
         viewModel.search(text)
     }
 
-    fun navigateToClientFormFrament(){
+    private fun navigateToClientFormFrament(){
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListClient_to_clientFormFragment)
     }
 
-    fun navigateToProductListFragment() {
+    private fun navigateToProductListFragment() {
         val navController = requireActivity().findNavController(R.id.navHostFragment)
         navController.popBackStack(R.id.fragmentListProduct, false)
         navController.navigate(R.id.fragmentListProduct)

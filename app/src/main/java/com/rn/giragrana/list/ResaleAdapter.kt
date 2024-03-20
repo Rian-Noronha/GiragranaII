@@ -19,13 +19,11 @@ class ResaleAdapter(
     private val clientsMap: Map<Long, Client>
 ) : ArrayAdapter<Resale>(context, 0, resales){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ItemResaleBinding
         val resale = getItem(position)
-        //val client = clients[resale?.clientId]
-        if(convertView == null){
-            binding = ItemResaleBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding: ItemResaleBinding = if(convertView == null){
+            ItemResaleBinding.inflate(LayoutInflater.from(context), parent, false)
         }else{
-            binding = ItemResaleBinding.bind(convertView)
+            ItemResaleBinding.bind(convertView)
         }
 
         val viewHolder = ViewHolder(binding)

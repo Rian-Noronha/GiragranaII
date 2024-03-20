@@ -2,7 +2,6 @@ package com.rn.giragrana.repository.room
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.switchMap
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.ProductRepository
 

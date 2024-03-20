@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.rn.giragrana.list
 
 import androidx.fragment.app.Fragment
@@ -24,7 +26,7 @@ class TabsPagerAdapter(
         fragmentTitleList.add(title)
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return fragmentTitleList[position]
     }
 

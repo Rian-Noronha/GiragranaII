@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.rn.giragrana.databinding.FragmentTotalResalesBinding
 import com.rn.giragrana.model.Resale
 import com.rn.giragrana.utils.PriceUtils
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 class TotalResalesFragment : Fragment() {
 
     private lateinit var binding: FragmentTotalResalesBinding
@@ -18,7 +18,7 @@ class TotalResalesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTotalResalesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,15 +26,15 @@ class TotalResalesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getResales()?.observe(viewLifecycleOwner, Observer { resales ->
+        viewModel.getResales().observe(viewLifecycleOwner) { resales ->
             binding.txtTotalResales.text = calculateTotalResales(resales)
-        })
+        }
 
     }
 
 
     private fun calculateTotalResales(resales:List<Resale>):String{
-        val totalResales = resales.sumByDouble { it.resalePrice.toDouble() }
+        val totalResales = resales.sumOf { it.resalePrice.toDouble() }
         return PriceUtils.formatPrice(totalResales.toFloat())
     }
 

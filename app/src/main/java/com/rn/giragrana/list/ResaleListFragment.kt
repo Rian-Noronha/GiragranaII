@@ -1,8 +1,6 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.appcompat.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,9 +10,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.ListFragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -26,6 +23,7 @@ import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+@Suppress("DEPRECATION")
 class ResaleListFragment :
     ListFragment(),
     AdapterView.OnItemLongClickListener,
@@ -42,73 +40,67 @@ class ResaleListFragment :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentListResaleBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listView: ListView = view.findViewById(android.R.id.list)
         listView.onItemLongClickListener = this
-        viewModelResale.showDetailsCommand().observe(viewLifecycleOwner, Observer { resale ->
+        viewModelResale.showDetailsCommand().observe(viewLifecycleOwner) { resale ->
             if (resale != null) {
                 showResaleDetails(resale)
             }
-        })
-        viewModelResale.isInDeleteMode().observe(viewLifecycleOwner, Observer { deleteMode ->
+        }
+        viewModelResale.isInDeleteMode().observe(viewLifecycleOwner) { deleteMode ->
             if (deleteMode == true) {
                 showDeleteMode()
             } else {
                 hideDeleteMode()
             }
-        })
-        viewModelResale.selectedResales().observe(viewLifecycleOwner, Observer { resales ->
+        }
+        viewModelResale.selectedResales().observe(viewLifecycleOwner) { resales ->
             if (resales != null) {
                 showSelectedResales(resales)
             }
-        })
-        viewModelResale.selectionCount().observe(viewLifecycleOwner, Observer { count ->
+        }
+        viewModelResale.selectionCount().observe(viewLifecycleOwner) { count ->
             if (count != null) {
                 updateSelectionCountText(count)
             }
-        })
-        viewModelResale.showDeletedMessage().observe(viewLifecycleOwner, Observer { count ->
+        }
+        viewModelResale.showDeletedMessage().observe(viewLifecycleOwner) { count ->
             if (count != null && count > 0) {
                 showMessageResalesDeleted(count)
             }
-        })
-        viewModelResale.getResales()?.observe(viewLifecycleOwner, Observer { resales ->
+        }
+        viewModelResale.getResales()?.observe(viewLifecycleOwner) { resales ->
             if (resales != null) {
                 showResales(resales)
             }
-        })
+        }
 
 
         if (viewModelResale.getResales()?.value == null) {
             search()
         }
 
-        viewModelProduct.productsMap.observe(viewLifecycleOwner, Observer { map ->
+        viewModelProduct.productsMap.observe(viewLifecycleOwner) { map ->
             map?.let {
                 productsMap = it
                 updateResaleList()
             }
-        })
+        }
 
-        viewModelClient.clientsMap.observe(viewLifecycleOwner, Observer { map ->
+        viewModelClient.clientsMap.observe(viewLifecycleOwner) { map ->
             map?.let {
                 clientsMap = it
                 updateResaleList()
             }
-        })
+        }
 
     }
 
@@ -121,13 +113,15 @@ class ResaleListFragment :
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.resale, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             android.R.id.home ->
                 navigateToProductListFragment()
 
@@ -155,8 +149,8 @@ class ResaleListFragment :
         val adapter = ResaleAdapter(
             requireContext(),
             resales,
-            productsMap ?: emptyMap(),
-            clientsMap ?: emptyMap()
+            productsMap,
+            clientsMap
         )
         listAdapter = adapter
     }
@@ -170,7 +164,7 @@ class ResaleListFragment :
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)
-        val resale = l?.getItemAtPosition(position) as Resale
+        val resale = l.getItemAtPosition(position) as Resale
         viewModelResale.selectResale(resale)
         if (actionMode == null) {
             val action = ResaleListFragmentDirections
@@ -197,14 +191,14 @@ class ResaleListFragment :
         return consumed
     }
 
-    fun showDeleteMode() {
+    private fun showDeleteMode() {
         val appCompatActivity = (activity as AppCompatActivity)
         actionMode = appCompatActivity.startSupportActionMode(this)
         listView.onItemLongClickListener = null
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
     }
 
-    fun hideDeleteMode() {
+    private fun hideDeleteMode() {
         listView.onItemLongClickListener = this
         for (i in 0 until listView.count) {
             listView.setItemChecked(i, false)
@@ -269,11 +263,7 @@ class ResaleListFragment :
         fun onResaleClick(resale: Resale)
     }
 
-    companion object {
-        const val EXTRA_CLIENT_ID = "clientId"
-        const val EXTRA_PRODUCT_ID = "productId"
-
-    }
+    companion object
 
 
 }

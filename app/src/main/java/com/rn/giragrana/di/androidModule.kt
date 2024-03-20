@@ -7,9 +7,6 @@ import com.rn.giragrana.form.ResaleFormViewModel
 import com.rn.giragrana.list.ClientListViewModel
 import com.rn.giragrana.list.ProductListViewModel
 import com.rn.giragrana.list.ResaleListViewModel
-import com.rn.giragrana.repository.ClientRepository
-import com.rn.giragrana.repository.ProductRepository
-import com.rn.giragrana.repository.ResaleRepository
 import com.rn.giragrana.repository.room.GiragranaDatabase
 import com.rn.giragrana.repository.room.RoomClientRepository
 import com.rn.giragrana.repository.room.RoomProductRepository
@@ -20,15 +17,15 @@ import org.koin.dsl.module
 val androidModule = module{
     single{this}
     single{
-        RoomProductRepository(GiragranaDatabase.getDatabase(context = get())) as ProductRepository
+        RoomProductRepository(GiragranaDatabase.getDatabase(context = get()))
     }
 
     single{
-        RoomClientRepository(GiragranaDatabase.getDatabase(context = get())) as ClientRepository
+        RoomClientRepository(GiragranaDatabase.getDatabase(context = get()))
     }
 
     single{
-        RoomResaleRepository(GiragranaDatabase.getDatabase(context = get())) as ResaleRepository
+        RoomResaleRepository(GiragranaDatabase.getDatabase(context = get()))
     }
     viewModel{
         ProductListViewModel(repository = get())

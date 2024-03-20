@@ -8,11 +8,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.rn.giragrana.model.Client
-import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.sqlite.CLIENT_COLUMN_ID
 import com.rn.giragrana.repository.sqlite.CLIENT_COLUMN_NAME
 import com.rn.giragrana.repository.sqlite.TABLE_CLIENT
-import com.rn.giragrana.repository.sqlite.TABLE_PRODUCT
 
 @Dao
 interface ClientDao {

@@ -1,6 +1,5 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,7 +12,6 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.ListFragment
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +21,7 @@ import com.rn.giragrana.databinding.FragmentListProductBinding
 import com.rn.giragrana.model.Product
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+@Suppress("DEPRECATION", "UNUSED_EXPRESSION")
 class ProductListFragment :
     ListFragment(),
     AdapterView.OnItemLongClickListener,
@@ -35,8 +34,7 @@ class ProductListFragment :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentListProductBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
@@ -44,47 +42,43 @@ class ProductListFragment :
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listView: ListView = view.findViewById(android.R.id.list)
         listView.onItemLongClickListener = this
-        viewModel.showDetailsCommand().observe(viewLifecycleOwner, Observer { product ->
+        viewModel.showDetailsCommand().observe(viewLifecycleOwner) { product ->
             if (product != null) {
                 showProductDetails(product)
             }
-        })
-        viewModel.isInDeleteMode().observe(viewLifecycleOwner, Observer { deleteMode ->
+        }
+        viewModel.isInDeleteMode().observe(viewLifecycleOwner) { deleteMode ->
             if (deleteMode == true) {
                 showDeleteMode()
             } else {
                 hideDeleteMode()
             }
-        })
-        viewModel.selectedProducts().observe(viewLifecycleOwner, Observer { products ->
+        }
+        viewModel.selectedProducts().observe(viewLifecycleOwner) { products ->
             if (products != null) {
                 showSelectedProducts(products)
             }
-        })
-        viewModel.selectionCount().observe(viewLifecycleOwner, Observer { count ->
+        }
+        viewModel.selectionCount().observe(viewLifecycleOwner) { count ->
             if (count != null) {
                 updateSelectionCountText(count)
             }
-        })
-        viewModel.showDeletedMessage().observe(viewLifecycleOwner, Observer { count ->
+        }
+        viewModel.showDeletedMessage().observe(viewLifecycleOwner) { count ->
             if (count != null && count > 0) {
                 showMessageProductsDeleted(count)
             }
-        })
-        viewModel.getProducts()?.observe(viewLifecycleOwner, Observer { products ->
+        }
+        viewModel.getProducts()?.observe(viewLifecycleOwner) { products ->
             if (products != null) {
                 showProducts(products)
             }
-        })
+        }
 
 
 
@@ -100,13 +94,15 @@ class ProductListFragment :
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.product, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.action_client ->
                 navigateToClientListFragment()
 
@@ -168,7 +164,7 @@ class ProductListFragment :
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)
-        val product = l?.getItemAtPosition(position) as Product
+        val product = l.getItemAtPosition(position) as Product
         viewModel.selectProduct(product)
         if (actionMode == null) {
             val action = ProductListFragmentDirections
@@ -202,7 +198,7 @@ class ProductListFragment :
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
     }
 
-    fun hideDeleteMode() {
+    private fun hideDeleteMode() {
         listView.onItemLongClickListener = this
         for (i in 0 until listView.count) {
             listView.setItemChecked(i, false)

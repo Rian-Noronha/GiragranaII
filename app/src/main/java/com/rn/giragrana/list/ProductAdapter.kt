@@ -1,5 +1,6 @@
 package com.rn.giragrana.list
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +13,13 @@ import com.rn.giragrana.model.Product
 class ProductAdapter(context: Context, products: List<Product>):
     ArrayAdapter<Product>(context, 0, products){
 
-
+    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ItemProductBinding
         val product = getItem(position)
-        if(convertView == null){
-            binding = ItemProductBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding: ItemProductBinding = if(convertView == null){
+            ItemProductBinding.inflate(LayoutInflater.from(context), parent, false)
         }else{
-            binding = ItemProductBinding.bind(convertView)
+            ItemProductBinding.bind(convertView)
         }
 
         val viewHolder = ViewHolder(binding)

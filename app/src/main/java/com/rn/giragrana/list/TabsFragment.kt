@@ -1,6 +1,5 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentTabsBinding
 
 class TabsFragment : Fragment() {
@@ -21,8 +19,7 @@ class TabsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentTabsBinding.inflate(inflater, container, false)
 
         tabLayout = binding.tabLayout
@@ -33,12 +30,6 @@ class TabsFragment : Fragment() {
 
         return binding.root
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
-
 
     private fun setupViewPager(viewPager: ViewPager){
         val adapter = TabsPagerAdapter(childFragmentManager)

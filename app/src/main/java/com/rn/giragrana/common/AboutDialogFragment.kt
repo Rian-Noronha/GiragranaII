@@ -13,7 +13,7 @@ class AboutDialogFragment : DialogFragment() {
         val listener = DialogInterface.OnClickListener { _, i ->
             if (i == DialogInterface.BUTTON_NEGATIVE) {
                 val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://github.com/Rian-Noronha"));
+                    Uri.parse("https://github.com/Rian-Noronha"))
                 startActivity(intent)
             }
         }

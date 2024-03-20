@@ -12,7 +12,6 @@ class ResaleListViewModel(
     private val repository: ResaleRepository
 ) : ViewModel(){
 
-    var resaleIdSelected: Long = -1
     private val searchTerm = MutableLiveData<String>()
     private val resales: LiveData<List<Resale>> = searchTerm.switchMap { term ->
         repository.search("%$term")
@@ -31,9 +30,7 @@ class ResaleListViewModel(
 
     fun isInDeleteMode(): LiveData<Boolean> = inDeleteMode
 
-    fun getSearchTerm(): LiveData<String>? = searchTerm
-
-    fun getResales(): LiveData<List<Resale>>? = resales
+    fun getResales(): LiveData<List<Resale>> = resales
 
     fun selectionCount(): LiveData<Int> = selectionCount
 

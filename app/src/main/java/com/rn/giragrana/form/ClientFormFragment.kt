@@ -1,5 +1,4 @@
 package com.rn.giragrana.form
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +6,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentClientFormBinding
 import com.rn.giragrana.model.Client
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClientFormFragment : DialogFragment(){
     private val viewModel: ClientFormViewModel by viewModel()
@@ -24,26 +22,21 @@ class ClientFormFragment : DialogFragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    ): View {
         binding = FragmentClientFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.run{
             val clientId = arguments?.getLong(EXTRA_CLIENT_ID, 0)?: 0
             if(clientId > 0){
-                viewModel.loadClient(clientId).observe(viewLifecycleOwner, Observer { loadedClient ->
+                viewModel.loadClient(clientId).observe(viewLifecycleOwner) { loadedClient ->
                     client = loadedClient
                     showClient(loadedClient)
-                })
+                }
 
             }
 

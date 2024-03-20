@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.rn.giragrana.databinding.FragmentTotalInvestedBinding
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.utils.PriceUtils
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 class TotalInvestedFragment : Fragment() {
     private lateinit var binding: FragmentTotalInvestedBinding
     private val viewModel: ProductListViewModel by sharedViewModel()
@@ -18,21 +18,21 @@ class TotalInvestedFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTotalInvestedBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getProducts()?.observe(viewLifecycleOwner, Observer { products ->
+        viewModel.getProducts().observe(viewLifecycleOwner) { products ->
             binding.txtTotalInvested.text = calculateTotalInvested(products)
-        })
+        }
     }
 
 
     private fun calculateTotalInvested(products: List<Product>): String {
-        val totalInvested = products.sumByDouble { it.price.toDouble() }
+        val totalInvested = products.sumOf { it.price.toDouble() }
         return PriceUtils.formatPrice(totalInvested.toFloat())
     }
 

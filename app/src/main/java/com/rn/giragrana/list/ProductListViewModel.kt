@@ -10,7 +10,6 @@ class ProductListViewModel(
     private val repository: ProductRepository
 ) : ViewModel(){
 
-    var productIdSelected: Long = -1
     private val searchTerm = MutableLiveData<String>()
     private val products: LiveData<List<Product>> = searchTerm.switchMap { term ->
         repository.search("%$term")
@@ -38,9 +37,7 @@ class ProductListViewModel(
         }
     }
 
-    fun getSearchTerm(): LiveData<String>? = searchTerm
-
-    fun getProducts(): LiveData<List<Product>>? = products
+    fun getProducts(): LiveData<List<Product>> = products
 
     fun selectionCount(): LiveData<Int> = selectionCount
 
@@ -49,11 +46,6 @@ class ProductListViewModel(
     fun showDeletedMessage(): LiveData<Int> = showDeletedMessage
 
     fun showDetailsCommand(): LiveData<Product> = showDetailsCommand
-
-
-    fun productById(productId: Long): LiveData<Product>{
-        return repository.productById(productId)
-    }
 
 
     fun selectProduct(product: Product) {
