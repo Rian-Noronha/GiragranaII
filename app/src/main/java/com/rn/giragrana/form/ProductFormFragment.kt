@@ -57,7 +57,7 @@ class ProductFormFragment : DialogFragment() {
     private fun showProduct(product: Product){
         binding.edtName.setText(product.name)
         binding.edtDescription.setText(product.description)
-        binding.edtPrice.setText(PriceUtils.formatPrice(product.price))
+        binding.edtPrice.setText(product.price.toString())
         binding.switchSold.isChecked = product.sold
     }
 
