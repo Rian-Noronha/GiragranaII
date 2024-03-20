@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "682553714532",
+    "project_id": "giragrana",
+    "storage_bucket": "giragrana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682553714532:android:feb54a275a4423554ebc71",
+        "android_client_info": {
+          "package_name": "com.rn.giragrana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXQmFSpwlb2j9SkFoUQKmIu_8tZSbJH68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

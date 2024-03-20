@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt") version "1.9.22"
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 
 }
 
@@ -54,6 +55,7 @@ val testrunner_version="1.1.5"
 val espresso_version="3.5.1"
 val paging_compose_version="1.0.0-alpha15"
 val nav_version = "2.7.7"
+val bom_version = "32.3.1"
 dependencies {
 
     implementation("androidx.core:core-ktx:$core_version")
@@ -92,6 +94,9 @@ dependencies {
   
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    implementation(platform("com.google.firebase:firebase-bom:$bom_version"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$testrunner_version")

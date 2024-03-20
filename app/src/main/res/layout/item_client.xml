@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:drawableLeft="@drawable/ic_person"
         android:text="@null"
         android:textColor="#000000"
         android:textSize="20sp" />
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:drawableLeft="@drawable/ic_call"
         android:text="@null"
         android:textColor="#333333"
         android:textSize="18sp"

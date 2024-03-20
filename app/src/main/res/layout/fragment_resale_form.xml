@@ -15,6 +15,7 @@
         <TextView
             android:id="@+id/txtChoiceProduct"
             android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/ic_category"
             android:layout_height="wrap_content"
             android:text="@string/txt_choice_product"
             android:layout_marginBottom="16dp"/>
@@ -31,6 +32,7 @@
         <TextView
             android:id="@+id/txtChoiceClient"
             android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/ic_person"
             android:layout_height="wrap_content"
             android:text="@string/txt_choice_client"
             android:layout_marginBottom="16dp"/>
@@ -54,6 +56,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtProductPrice"
                 android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_money_invested"
                 android:layout_height="wrap_content"
                 android:hint="@string/form_label_product_price"
                 android:imeOptions="actionDone"
@@ -73,6 +76,7 @@
                 android:id="@+id/edtResalePrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_money_resale"
                 android:hint="@string/form_label_resale_price"
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
@@ -94,6 +98,7 @@
             android:id="@+id/txtProfitPercentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_percent"
             android:text="@string/form_label_profit_percentage"
             android:layout_marginBottom="16dp"/>
 
@@ -109,6 +114,7 @@
                 android:id="@+id/edtReceivingDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_date_next"
                 android:hint="@string/form_label_receiving_date"
                 android:imeOptions="actionDone"
                 android:inputType="datetime"
@@ -125,6 +131,7 @@
                 android:id="@+id/edtPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_payments"
                 android:hint="@string/form_label_payment_method"
                 android:imeOptions="actionDone"
                 android:inputType="text"
