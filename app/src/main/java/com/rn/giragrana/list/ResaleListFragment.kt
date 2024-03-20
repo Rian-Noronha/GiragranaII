@@ -1,5 +1,6 @@
 package com.rn.giragrana.list
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.view.ActionMode
 import android.view.LayoutInflater
@@ -24,10 +25,11 @@ import com.rn.giragrana.model.Client
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 class ResaleListFragment :
     ListFragment(),
     AdapterView.OnItemLongClickListener,
-    ActionMode.Callback{
+    ActionMode.Callback {
 
     private val viewModelResale: ResaleListViewModel by sharedViewModel()
     private val viewModelProduct: ProductListViewModel by sharedViewModel()
@@ -41,11 +43,15 @@ class ResaleListFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentListResaleBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -124,7 +130,8 @@ class ResaleListFragment :
         when (item?.itemId) {
             android.R.id.home ->
                 navigateToProductListFragment()
-            R.id.action_new_resale ->{
+
+            R.id.action_new_resale -> {
                 navigateToResaleFormFragment()
             }
         }
@@ -132,12 +139,12 @@ class ResaleListFragment :
     }
 
 
-    private fun navigateToResaleFormFragment(){
+    private fun navigateToResaleFormFragment() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_resaleListFragment_to_resaleFormFragment)
     }
 
-    private fun navigateToProductListFragment(){
+    private fun navigateToProductListFragment() {
         val navController = requireActivity().findNavController(R.id.navHostFragment)
         navController.popBackStack(R.id.fragmentListProduct, false)
         navController.navigate(R.id.fragmentListProduct)
@@ -145,7 +152,12 @@ class ResaleListFragment :
 
 
     private fun showResales(resales: List<Resale>) {
-        val adapter = ResaleAdapter(requireContext(), resales, productsMap ?: emptyMap(), clientsMap ?: emptyMap())
+        val adapter = ResaleAdapter(
+            requireContext(),
+            resales,
+            productsMap ?: emptyMap(),
+            clientsMap ?: emptyMap()
+        )
         listAdapter = adapter
     }
 
@@ -160,9 +172,9 @@ class ResaleListFragment :
         super.onListItemClick(l, v, position, id)
         val resale = l?.getItemAtPosition(position) as Resale
         viewModelResale.selectResale(resale)
-        if(actionMode == null){
-           val action = ResaleListFragmentDirections
-               .actionResaleListFragmentToResaleFormFragment(resaleId = resale.id)
+        if (actionMode == null) {
+            val action = ResaleListFragmentDirections
+                .actionResaleListFragmentToResaleFormFragment(resaleId = resale.id)
             findNavController().navigate(action)
         }
 
@@ -172,8 +184,10 @@ class ResaleListFragment :
         viewModelResale.search(text)
     }
 
-    override fun onItemLongClick(parent: AdapterView<*>?, view: View?,
-                                 position: Int, id: Long): Boolean {
+    override fun onItemLongClick(
+        parent: AdapterView<*>?, view: View?,
+        position: Int, id: Long
+    ): Boolean {
         val consumed = (actionMode == null)
         if (consumed) {
             val resale = parent?.getItemAtPosition(position) as Resale
@@ -183,7 +197,7 @@ class ResaleListFragment :
         return consumed
     }
 
-    fun showDeleteMode(){
+    fun showDeleteMode() {
         val appCompatActivity = (activity as AppCompatActivity)
         actionMode = appCompatActivity.startSupportActionMode(this)
         listView.onItemLongClickListener = null
@@ -203,7 +217,8 @@ class ResaleListFragment :
 
     private fun updateSelectionCountText(count: Int) {
         view?.post {
-            actionMode?.title = resources.getQuantityString(R.plurals.list_product_selected, count, count)
+            actionMode?.title =
+                resources.getQuantityString(R.plurals.list_product_selected, count, count)
         }
     }
 
@@ -219,9 +234,11 @@ class ResaleListFragment :
     }
 
     private fun showMessageResalesDeleted(count: Int) {
-        Snackbar.make(listView,
+        Snackbar.make(
+            listView,
             getString(R.string.message_resales_deleted, count),
-            Snackbar.LENGTH_LONG)
+            Snackbar.LENGTH_LONG
+        )
             .setAction(R.string.undo) {
                 viewModelResale.undoDelete()
             }
@@ -252,7 +269,7 @@ class ResaleListFragment :
         fun onResaleClick(resale: Resale)
     }
 
-    companion object{
+    companion object {
         const val EXTRA_CLIENT_ID = "clientId"
         const val EXTRA_PRODUCT_ID = "productId"
 

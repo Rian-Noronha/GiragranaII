@@ -1,5 +1,6 @@
 package com.rn.giragrana.list
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -23,9 +24,9 @@ import com.rn.giragrana.model.Product
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ProductListFragment :
-ListFragment(),
-AdapterView.OnItemLongClickListener,
-ActionMode.Callback {
+    ListFragment(),
+    AdapterView.OnItemLongClickListener,
+    ActionMode.Callback {
 
     private val viewModel: ProductListViewModel by sharedViewModel()
     private var actionMode: ActionMode? = null
@@ -35,11 +36,17 @@ ActionMode.Callback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentListProductBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -102,6 +109,7 @@ ActionMode.Callback {
         when (item?.itemId) {
             R.id.action_client ->
                 navigateToClientListFragment()
+
             R.id.action_resale -> {
                 navigateToResaleListFrament()
             }
@@ -115,7 +123,7 @@ ActionMode.Callback {
                 return true
             }
 
-            R.id.action_sign_out ->{
+            R.id.action_sign_out -> {
                 activity?.finish()
                 true
             }
@@ -125,23 +133,23 @@ ActionMode.Callback {
     }
 
 
-    private fun navigateToClientListFragment(){
+    private fun navigateToClientListFragment() {
         val action = ProductListFragmentDirections
             .actionFragmentListProductToFragmentListClient()
         findNavController().navigate(action)
     }
 
-    private fun navigateToResaleListFrament(){
+    private fun navigateToResaleListFrament() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListProduct_to_resaleListFragment)
     }
 
-    private fun navigateToProductFormFragment(){
+    private fun navigateToProductFormFragment() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListProduct_to_productFormFragment)
     }
 
-    private fun navigateToTabsFragment(){
+    private fun navigateToTabsFragment() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListProduct_to_tabsFragment)
     }
@@ -162,7 +170,7 @@ ActionMode.Callback {
         super.onListItemClick(l, v, position, id)
         val product = l?.getItemAtPosition(position) as Product
         viewModel.selectProduct(product)
-        if(actionMode == null){
+        if (actionMode == null) {
             val action = ProductListFragmentDirections
                 .actionFragmentListProductToProductDetailsFragment(productId = product.id)
             findNavController().navigate(action)
@@ -174,8 +182,10 @@ ActionMode.Callback {
         viewModel.search(text)
     }
 
-    override fun onItemLongClick(parent: AdapterView<*>?, view: View?,
-                                 position: Int, id: Long): Boolean {
+    override fun onItemLongClick(
+        parent: AdapterView<*>?, view: View?,
+        position: Int, id: Long
+    ): Boolean {
         val consumed = (actionMode == null)
         if (consumed) {
             val product = parent?.getItemAtPosition(position) as Product
@@ -205,7 +215,8 @@ ActionMode.Callback {
 
     private fun updateSelectionCountText(count: Int) {
         view?.post {
-            actionMode?.title = resources.getQuantityString(R.plurals.list_product_selected, count, count)
+            actionMode?.title =
+                resources.getQuantityString(R.plurals.list_product_selected, count, count)
         }
     }
 
@@ -221,9 +232,11 @@ ActionMode.Callback {
     }
 
     private fun showMessageProductsDeleted(count: Int) {
-        Snackbar.make(listView,
+        Snackbar.make(
+            listView,
             getString(R.string.message_products_deleted, count),
-            Snackbar.LENGTH_LONG)
+            Snackbar.LENGTH_LONG
+        )
             .setAction(R.string.undo) {
                 viewModel.undoDelete()
             }

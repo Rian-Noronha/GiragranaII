@@ -1,6 +1,7 @@
 package com.rn.giragrana.details
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -34,8 +35,14 @@ class ProductDetailsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
