@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_item_resale"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/select_list_item"
+    android:padding="16dp"
+    >
 
     <TextView
         android:id="@+id/txtProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:drawableLeft="@drawable/ic_category"
         android:text="@null"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:drawableLeftCompat="@drawable/ic_category" />
 
     <TextView
         android:id="@+id/txtProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:drawableLeft="@drawable/ic_money_invested"
         android:text="@null"
         android:textColor="#333333"
         android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:drawableLeftCompat="@drawable/ic_money_invested" />
 
     <TextView
         android:id="@+id/txtPriceResale"
@@ -33,64 +35,64 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@null"
-        android:drawableLeft="@drawable/ic_money_resale"
         android:textColor="#333333"
         android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:drawableLeftCompat="@drawable/ic_money_resale" />
 
     <TextView
         android:id="@+id/txtClientName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:drawableLeft="@drawable/ic_person"
         android:text="@null"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        app:drawableLeftCompat="@drawable/ic_person" />
 
     <TextView
         android:id="@+id/txtClientContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_call"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@null"
         android:textColor="#333333"
         android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:drawableLeftCompat="@drawable/ic_call" />
 
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:drawableLeft="@drawable/ic_date_today"
         android:text="@null"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        app:drawableLeftCompat="@drawable/ic_date_today" />
 
     <TextView
         android:id="@+id/txtReceivingDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_date_next"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@null"
         android:textColor="#333333"
         android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:drawableLeftCompat="@drawable/ic_date_next" />
 
     <TextView
         android:id="@+id/txtPaymentMethod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_payments"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@null"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        app:drawableLeftCompat="@drawable/ic_payments" />
 
 </LinearLayout>

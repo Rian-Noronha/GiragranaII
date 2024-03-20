@@ -56,6 +56,7 @@ val espresso_version="3.5.1"
 val paging_compose_version="1.0.0-alpha15"
 val nav_version = "2.7.7"
 val bom_version = "32.3.1"
+val play_services_version = "20.2.0"
 dependencies {
 
     implementation("androidx.core:core-ktx:$core_version")
@@ -69,6 +70,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
     implementation("androidx.room:room-common:2.6.1")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")
@@ -95,9 +98,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     implementation(platform("com.google.firebase:firebase-bom:$bom_version"))
-    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics-ktx")
-
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$testrunner_version")
     androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version")

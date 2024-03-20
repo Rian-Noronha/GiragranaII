@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/fragmentListProduct">
+    app:startDestination="@id/fragmentLogin">
     <fragment
         android:id="@+id/fragmentListProduct"
         android:name="com.rn.giragrana.list.ProductListFragment"
@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_fragmentListProduct_to_tabsFragment"
             app:destination="@id/tabsFragment" />
+        <action
+            android:id="@+id/action_fragmentListProduct_to_loginFragment"
+            app:destination="@id/fragmentLogin" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
@@ -115,5 +118,15 @@
         android:label="Espie Só"
         tools:layout="@layout/fragment_tabs"
         />
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.rn.giragrana.auth.LoginFragment"
+        android:label="Bora entrar"
+        tools:layout="@layout/fragment_login"
+        >
+        <action
+            android:id="@+id/action_loginFragment_to_fragmentListProduct"
+            app:destination="@id/fragmentListProduct" />
+    </fragment>
 
 </navigation>

@@ -115,6 +115,11 @@ ActionMode.Callback {
                 return true
             }
 
+            R.id.action_sign_out ->{
+                activity?.finish()
+                true
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }

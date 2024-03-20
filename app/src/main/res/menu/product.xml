@@ -23,4 +23,10 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/action_info"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_sign_out"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/action_sign_out"
+        app:showAsAction="never" />
 </menu>

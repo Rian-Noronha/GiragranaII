@@ -4,6 +4,7 @@
     <string name="action_resale">Revenda</string>
     <string name="action_venha_ca">Venha cá</string>
     <string name="action_info">Info</string>
+    <string name="action_sign_out">Sair</string>
     <string name="action_new_product">Novo Produto</string>
     <string name="action_new_client">Novo Cliente</string>
     <string name="action_new_resale">Nova Revenda</string>
@@ -68,5 +69,10 @@
     <string name="tab_description">Tab Layout</string>
     <string name="view_pager_description">View Pager Layout</string>
     <string name="error_spinner_products">Veja se tem produto para revenda</string>
-
+    <string name="btn_sign">Bora</string>
+    <string name="auth_error_message">Erro de autenticação. Já, já é resolvido!</string>
+    <string name="login_cancelled">Login cancelado</string>
+    <string name="login_fail">Falha no Login</string>
+    <string name="unknown_error">Erro desconhecido</string>
+    <string name="default_web_client_id">682553714532-20kllgbek6keb75k8kh6ovmfdl50p6vt.apps.googleusercontent.com</string>
 </resources>

@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.ListFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rn.giragrana.R
@@ -224,12 +226,11 @@ class ClientListFragment :
             .navigate(R.id.action_fragmentListClient_to_clientFormFragment)
     }
 
-    fun navigateToProductListFragment(){
-        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
-            .navigate(R.id.action_fragmentListClient_to_fragmentListProduct)
+    fun navigateToProductListFragment() {
+        val navController = requireActivity().findNavController(R.id.navHostFragment)
+        navController.popBackStack(R.id.fragmentListProduct, false)
+        navController.navigate(R.id.fragmentListProduct)
     }
-
-    fun
 
     interface OnClientClickListener{
         fun onClientClick(client: Client)
