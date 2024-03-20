@@ -27,14 +27,8 @@ class ProductFormFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentProductFormBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

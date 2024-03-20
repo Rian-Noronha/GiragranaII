@@ -36,7 +36,6 @@ class ProductListFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentListProductBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
@@ -44,10 +43,6 @@ class ProductListFragment :
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

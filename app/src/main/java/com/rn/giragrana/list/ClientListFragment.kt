@@ -36,15 +36,9 @@ class ClientListFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = FragmentListClientBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
 

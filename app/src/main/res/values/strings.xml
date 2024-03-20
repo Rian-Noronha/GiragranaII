@@ -67,6 +67,7 @@
     <string name="txt_choice_product">Vou vender:</string>
 
     <string name="tab_description">Tab Layout</string>
+    <string name="img_login">Imagem da tela de login</string>
     <string name="view_pager_description">View Pager Layout</string>
     <string name="error_spinner_products">Veja se tem produto para revenda</string>
     <string name="btn_sign">Bora</string>
