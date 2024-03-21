@@ -10,4 +10,7 @@ interface ProductRepository {
     fun search(term: String): LiveData<List<Product>>
 
     fun getProductsMap(): LiveData<Map<Long, Product>>
+
+    suspend fun deleteAllProducts()
+
 }

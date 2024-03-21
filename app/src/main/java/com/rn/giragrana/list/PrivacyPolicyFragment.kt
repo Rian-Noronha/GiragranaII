@@ -9,9 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentPrivacyPolicyBinding
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
 
 class PrivacyPolicyFragment : Fragment() {
     private lateinit var binding: FragmentPrivacyPolicyBinding

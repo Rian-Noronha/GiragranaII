@@ -1,6 +1,5 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -107,10 +106,12 @@ class ProductListFragment :
 
             R.id.action_resale -> {
                 navigateToResaleListFrament()
+                return true
             }
 
             R.id.action_venha_ca -> {
                 navigateToTabsFragment()
+                return true
             }
 
             R.id.action_info -> {
@@ -118,9 +119,9 @@ class ProductListFragment :
                 return true
             }
 
-            R.id.action_sign_out -> {
-                activity?.finish()
-                true
+            R.id.action_delete_account -> {
+                navigateToDeleteAccount()
+                return true
             }
 
         }
@@ -137,6 +138,11 @@ class ProductListFragment :
     private fun navigateToResaleListFrament() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_fragmentListProduct_to_resaleListFragment)
+    }
+
+    private fun navigateToDeleteAccount(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentListProduct_to_deleteAccountFragment)
     }
 
     private fun navigateToProductFormFragment() {

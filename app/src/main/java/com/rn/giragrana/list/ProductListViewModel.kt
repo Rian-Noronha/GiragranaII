@@ -6,6 +6,7 @@ import androidx.lifecycle.switchMap
 import com.rn.giragrana.common.SingleLiveEvent
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.ProductRepository
+
 class ProductListViewModel(
     private val repository: ProductRepository
 ) : ViewModel(){
@@ -105,5 +106,7 @@ class ProductListViewModel(
             }
         }
     }
+
+
 
 }

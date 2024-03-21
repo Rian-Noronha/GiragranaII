@@ -1,6 +1,5 @@
 package com.rn.giragrana.list
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.view.ActionMode
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.ListFragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController

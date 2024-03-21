@@ -27,5 +27,7 @@ interface ProductDao {
 
     @Query("""SELECT * FROM $TABLE_PRODUCT""")
     fun getAllProducts(): LiveData<List<Product>>
+    @Query("""DELETE FROM $TABLE_PRODUCT""")
+    suspend fun deleteAllProducts()
 
 }

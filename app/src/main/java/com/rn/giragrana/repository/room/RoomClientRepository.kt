@@ -42,4 +42,9 @@ class RoomClientRepository(
         return result
     }
 
+    override suspend fun deleteAllClients() {
+       clientDao.deleteAllClients()
+    }
+
+
 }

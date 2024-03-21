@@ -43,5 +43,9 @@ class RoomProductRepository(
         return result
     }
 
+    override suspend fun deleteAllProducts() {
+       productDao.deleteAllProducts()
+    }
+
 
 }

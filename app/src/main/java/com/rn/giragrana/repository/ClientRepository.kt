@@ -9,4 +9,5 @@ interface ClientRepository {
     fun clientById(id:Long): LiveData<Client>
     fun search(term: String): LiveData<List<Client>>
     fun getClientsMap(): LiveData<Map<Long, Client>>
+    suspend fun deleteAllClients()
 }

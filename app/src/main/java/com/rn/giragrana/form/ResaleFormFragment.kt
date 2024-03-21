@@ -1,6 +1,4 @@
 package com.rn.giragrana.form
-
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +15,6 @@ import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentResaleFormBinding
 import com.rn.giragrana.list.ClientListViewModel
 import com.rn.giragrana.list.ProductListViewModel
-import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
 import com.rn.giragrana.utils.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel

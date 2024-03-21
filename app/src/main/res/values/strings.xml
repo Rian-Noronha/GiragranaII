@@ -4,7 +4,7 @@
     <string name="action_resale">Revenda</string>
     <string name="action_venha_ca">Venha cá</string>
     <string name="action_info">Info</string>
-    <string name="action_sign_out">Sair</string>
+    <string name="action_delete_account">Deletar conta</string>
     <string name="action_new_product">Novo Produto</string>
     <string name="action_new_client">Novo Cliente</string>
     <string name="action_new_resale">Nova Revenda</string>
@@ -78,4 +78,14 @@
     <string name="default_web_client_id">682553714532-20kllgbek6keb75k8kh6ovmfdl50p6vt.apps.googleusercontent.com</string>
     <string name="privacy_policy">Política de privacidade</string>
     <string name="error_privacy_policy">Pequeno problema para mostrar a Política do app, aguarde um pouco:)</string>
+    <string name="delete_account_title">Exclusão da conta</string>
+    <string name="delete_account_warning">Todos os seus dados serão excluídos do Giragrana</string>
+    <string name="delete_account_button">DELETAR</string>
+    <string name="stay_here">É isso aí:) Fique por aqui mesmo!</string>
+    <string name="error_delete_account">Pequeno problema ao deletar, já será corrigido!</string>
+    <string name="interrogation_delete_account">Quer mesmo ir embora?</string>
+    <string name="interrogation_delete_account_positive">Quero</string>
+    <string name="interrogation_delete_account_negative">Quero não</string>
+
+
 </resources>

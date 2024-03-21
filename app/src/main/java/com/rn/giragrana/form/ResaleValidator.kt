@@ -1,7 +1,6 @@
 package com.rn.giragrana.form
 
 import com.rn.giragrana.model.Resale
-
 class ResaleValidator {
     fun validate(info: Resale) = with(info){
         checkPaymentMethod(paymentMethod)

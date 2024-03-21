@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_fragmentListProduct_to_loginFragment"
             app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentListProduct_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
@@ -136,6 +139,17 @@
         android:name="com.rn.giragrana.list.PrivacyPolicyFragment"
         android:label="Política de Privacidade"
         tools:layout="@layout/fragment_privacy_policy"
-        />
+        >
+    </fragment>
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.rn.giragrana.auth.DeleteAccountFragment"
+        android:label="Tela de exclusão"
+        tools:layout="@layout/fragment_delete_account"
+        >
+        <action
+            android:id="@+id/action_deleteAccountFragment_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 
 </navigation>

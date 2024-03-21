@@ -1,5 +1,7 @@
 package com.rn.giragrana.di
 
+import com.rn.giragrana.auth.DeleteAccountViewModel
+import com.rn.giragrana.auth.DeleteAccountViewModelFactory
 import com.rn.giragrana.details.ProductDetailsViewModel
 import com.rn.giragrana.form.ClientFormViewModel
 import com.rn.giragrana.form.ProductFormViewModel
@@ -17,45 +19,19 @@ import com.rn.giragrana.repository.room.RoomResaleRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val androidModule = module{
-    single{this}
-    single{
-        RoomProductRepository(GiragranaDatabase.getDatabase(context = get())) as ProductRepository
-    }
+val androidModule = module {
+    single { GiragranaDatabase.getDatabase(context = get()) }
+    single<ProductRepository> { RoomProductRepository(get()) }
+    single<ClientRepository> { RoomClientRepository(get()) }
+    single<ResaleRepository> { RoomResaleRepository(get()) }
 
-    single{
-        RoomClientRepository(GiragranaDatabase.getDatabase(context = get())) as ClientRepository
-    }
-
-    single{
-        RoomResaleRepository(GiragranaDatabase.getDatabase(context = get())) as ResaleRepository
-    }
-    viewModel{
-        ProductListViewModel(repository = get())
-    }
-
-    viewModel{
-        ProductFormViewModel(repository = get())
-    }
-
-    viewModel{
-        ProductDetailsViewModel(repository = get())
-    }
-
-    viewModel{
-        ClientListViewModel(repository = get())
-    }
-
-    viewModel{
-        ClientFormViewModel(repository = get())
-    }
-
-    viewModel{
-        ResaleListViewModel(repository = get())
-    }
-
-    viewModel{
-        ResaleFormViewModel(repository = get())
-    }
-
+    viewModel { ProductListViewModel(repository = get()) }
+    viewModel { ProductFormViewModel(repository = get()) }
+    viewModel { ProductDetailsViewModel(repository = get()) }
+    viewModel { ClientListViewModel(repository = get()) }
+    viewModel { ClientFormViewModel(repository = get()) }
+    viewModel { ResaleListViewModel(repository = get()) }
+    viewModel { ResaleFormViewModel(repository = get()) }
+    factory { DeleteAccountViewModelFactory(get(), get()) }
+    viewModel { DeleteAccountViewModelFactory(get(), get()).create(DeleteAccountViewModel::class.java) }
 }

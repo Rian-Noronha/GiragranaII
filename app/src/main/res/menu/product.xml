@@ -25,8 +25,8 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_sign_out"
+        android:id="@+id/action_delete_account"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="@string/action_sign_out"
+        android:title="@string/action_delete_account"
         app:showAsAction="never" />
 </menu>

@@ -1,5 +1,4 @@
 package com.rn.giragrana.form
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +7,11 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentProductFormBinding
 import com.rn.giragrana.model.Product
-import com.rn.giragrana.utils.PriceUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductFormFragment : DialogFragment() {
 
