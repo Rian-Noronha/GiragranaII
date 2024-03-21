@@ -127,6 +127,15 @@
         <action
             android:id="@+id/action_loginFragment_to_fragmentListProduct"
             app:destination="@id/fragmentListProduct" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.rn.giragrana.list.PrivacyPolicyFragment"
+        android:label="Política de Privacidade"
+        tools:layout="@layout/fragment_privacy_policy"
+        />
 
 </navigation>

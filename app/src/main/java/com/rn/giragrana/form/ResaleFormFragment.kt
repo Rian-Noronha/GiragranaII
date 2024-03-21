@@ -66,7 +66,7 @@ class ResaleFormFragment : DialogFragment() {
 
                         binding.edtResalePrice.setText(calculateResalePrice(productPrice, profitPercentage).toString())
                     }else{
-                        Toast.makeText(requireContext(), R.string.error_resales, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), R.string.error_resales, Toast.LENGTH_SHORT).show()
                     }
 
                 }

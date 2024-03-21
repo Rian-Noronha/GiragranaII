@@ -41,7 +41,7 @@
                 android:drawableLeft="@drawable/ic_call"
                 android:hint="@string/form_label_contact_client"
                 android:imeOptions="actionDone"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,7 +1,6 @@
 package com.rn.giragrana.auth
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +41,11 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        binding.privacyPolicy.setOnClickListener{
+            navigateToPrivacyPolicyFragment()
+        }
+
         auth = Firebase.auth
         googleSignInClient = GoogleSignIn.getClient(requireContext(), getGoogleSignInOptions())
         binding.btnSignIn.setOnClickListener { signIn() }
@@ -87,6 +91,11 @@ class LoginFragment : Fragment() {
     private fun navigateToProductListFragment() {
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_loginFragment_to_fragmentListProduct)
+    }
+
+    private fun navigateToPrivacyPolicyFragment(){
+        Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+            .navigate(R.id.action_fragmentLogin_to_privacyPolicyFragment)
     }
 
     private fun showAuthErrorToast() {
