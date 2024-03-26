@@ -1,5 +1,9 @@
 package com.rn.giragrana.list
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -11,6 +15,7 @@ import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.core.content.FileProvider
 import androidx.fragment.app.ListFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -20,7 +25,11 @@ import com.rn.giragrana.R
 import com.rn.giragrana.common.AboutDialogFragment
 import com.rn.giragrana.databinding.FragmentListProductBinding
 import com.rn.giragrana.model.Product
+import com.rn.giragrana.utils.PdfUtils.exportToPdf
+import com.rn.giragrana.utils.ShareUtils.sharePdf
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.io.File
+import java.io.FileOutputStream
 
 class ProductListFragment :
     ListFragment(),
@@ -30,6 +39,7 @@ class ProductListFragment :
     private val viewModel: ProductListViewModel by sharedViewModel()
     private var actionMode: ActionMode? = null
     private lateinit var binding: FragmentListProductBinding
+    private lateinit var pdfDocument: PdfDocument
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -111,6 +121,13 @@ class ProductListFragment :
 
             R.id.action_venha_ca -> {
                 navigateToTabsFragment()
+                return true
+            }
+
+            R.id.action_want_pdf -> {
+                val file = File(requireContext().externalCacheDir, "meus_produtos.pdf")
+                exportToPdf(listView, file)
+                sharePdf(requireContext(), file)
                 return true
             }
 

@@ -19,6 +19,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_want_pdf"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/action_want_pdf"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_info"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/action_info"

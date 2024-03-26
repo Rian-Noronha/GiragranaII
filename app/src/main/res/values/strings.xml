@@ -3,6 +3,7 @@
     <string name="action_client">Cliente</string>
     <string name="action_resale">Revenda</string>
     <string name="action_venha_ca">Venha cá</string>
+    <string name="action_want_pdf">Imprimir</string>
     <string name="action_info">Info</string>
     <string name="action_delete_account">Deletar conta</string>
     <string name="action_new_product">Novo Produto</string>

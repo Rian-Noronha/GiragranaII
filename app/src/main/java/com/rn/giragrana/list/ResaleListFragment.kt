@@ -22,7 +22,10 @@ import com.rn.giragrana.databinding.FragmentListResaleBinding
 import com.rn.giragrana.model.Client
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.model.Resale
+import com.rn.giragrana.utils.PdfUtils
+import com.rn.giragrana.utils.ShareUtils
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.io.File
 
 class ResaleListFragment :
     ListFragment(),
@@ -125,6 +128,13 @@ class ResaleListFragment :
 
             R.id.action_new_resale -> {
                 navigateToResaleFormFragment()
+            }
+
+            R.id.action_want_pdf -> {
+                val file = File(requireContext().externalCacheDir, "minhas_revendas.pdf")
+                PdfUtils.exportToPdf(listView, file)
+                ShareUtils.sharePdf(requireContext(), file)
+                return true
             }
         }
         return super.onOptionsItemSelected(item)
