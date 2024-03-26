@@ -52,9 +52,9 @@ class ResaleFormFragment : DialogFragment() {
                 binding.txtProfitPercentage.text = getString(R.string.form_label_profit_percentage, progress)
 
                 arguments?.run{
-                    if(binding.spinnerProduct.selectedItemPosition != -1){
+                    if(checkProcutAndClient()){
                         val selectedProductPosition = binding.spinnerProduct.selectedItemPosition
-                        val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
+                        val selectedProduct = viewModelProduct.getUnsoldProducts()?.value?.get(selectedProductPosition)
                         val productId = selectedProduct?.id ?: 0
                         binding.edtProductPrice.setText(selectedProduct?.price.toString())
 
@@ -78,11 +78,9 @@ class ResaleFormFragment : DialogFragment() {
             }
         })
 
-        viewModelProduct.getProducts()?.observe(viewLifecycleOwner, Observer { products ->
-            if (products != null) {
-                val productsToShow = products.filter { !it.sold }
-                val productNamesWithInfo = productsToShow.map { "${it.name} - ID: ${it.id}" }
-
+        viewModelProduct.getUnsoldProducts()?.observe(viewLifecycleOwner, Observer { unsoldProducts ->
+            if (unsoldProducts != null) {
+                val productNamesWithInfo = unsoldProducts.map { "${it.name} - ID: ${it.id}" }
                 val productAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, productNamesWithInfo)
                 productAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerProduct.adapter = productAdapter
@@ -120,6 +118,8 @@ class ResaleFormFragment : DialogFragment() {
 
 
     }
+
+    private fun checkProcutAndClient(): Boolean = binding.spinnerProduct.selectedItemPosition != -1 && binding.spinnerClient.selectedItemPosition != -1
 
     private fun showResale(resale: Resale){
         binding.edtResalePrice.setText(resale.resalePrice.toString())
@@ -161,7 +161,7 @@ class ResaleFormFragment : DialogFragment() {
                 resale.id = resaleId
 
                 val selectedProductPosition = binding.spinnerProduct.selectedItemPosition
-                val selectedProduct = viewModelProduct.getProducts()?.value?.get(selectedProductPosition)
+                val selectedProduct = viewModelProduct.getUnsoldProducts()?.value?.get(selectedProductPosition)
                 val productId = selectedProduct?.id ?: 0
 
                 val selectedClientPosition = binding.spinnerClient.selectedItemPosition

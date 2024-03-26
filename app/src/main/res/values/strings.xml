@@ -28,7 +28,7 @@
     <string name="error_product_not_found">Produto não encontrado</string>
     <string name="error_client_not_found">Cliente não encontrado</string>
     <string name="error_resale_not_found">Revenda não encontrada</string>
-    <string name="error_resales">Se ligue se tem produto</string>
+    <string name="error_resales">Se ligue se tem produto ou cliente</string>
     <string name="action_delete">Excluir</string>
     <plurals name="list_product_selected">
         <item quantity="one">1 selecionado</item>

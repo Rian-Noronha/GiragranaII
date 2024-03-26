@@ -39,9 +39,13 @@ class ProductListViewModel(
         }
     }
 
+    private val unsoldProducts: LiveData<List<Product>> = repository.unsoldProducts()
+
     fun getSearchTerm(): LiveData<String>? = searchTerm
 
     fun getProducts(): LiveData<List<Product>>? = products
+
+    fun getUnsoldProducts(): LiveData<List<Product>>? = unsoldProducts
 
     fun selectionCount(): LiveData<Int> = selectionCount
 

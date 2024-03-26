@@ -32,6 +32,10 @@ class RoomProductRepository(
         return productDao.search(term)
     }
 
+    override fun unsoldProducts(): LiveData<List<Product>> {
+       return productDao.unsoldProducts()
+    }
+
     override fun getProductsMap(): LiveData<Map<Long, Product>> {
         val result = MediatorLiveData<Map<Long, Product>>()
         val allProductsLiveData = productDao.getAllProducts()

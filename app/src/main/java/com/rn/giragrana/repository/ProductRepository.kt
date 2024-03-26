@@ -8,6 +8,7 @@ interface ProductRepository {
     fun remove(vararg products: Product)
     fun productById(id:Long): LiveData<Product>
     fun search(term: String): LiveData<List<Product>>
+    fun unsoldProducts(): LiveData<List<Product>>
 
     fun getProductsMap(): LiveData<Map<Long, Product>>
 

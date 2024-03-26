@@ -10,6 +10,7 @@ import androidx.room.Update
 import com.rn.giragrana.model.Product
 import com.rn.giragrana.repository.sqlite.PRODUCT_COLUMN_ID
 import com.rn.giragrana.repository.sqlite.PRODUCT_COLUMN_NAME
+import com.rn.giragrana.repository.sqlite.PRODUCT_COLUMN_SOLD
 import com.rn.giragrana.repository.sqlite.TABLE_PRODUCT
 @Dao
 interface ProductDao {
@@ -22,8 +23,11 @@ interface ProductDao {
     @Query("SELECT * FROM $TABLE_PRODUCT WHERE $PRODUCT_COLUMN_ID = :id")
     fun productById(id: Long): LiveData<Product>
 
-    @Query("""SELECT * FROM $TABLE_PRODUCT WHERE $PRODUCT_COLUMN_NAME LIKE :query ORDER BY $PRODUCT_COLUMN_NAME""")
+    @Query("""SELECT * FROM $TABLE_PRODUCT WHERE $PRODUCT_COLUMN_NAME LIKE :query ORDER BY $PRODUCT_COLUMN_ID""")
     fun search(query: String): LiveData<List<Product>>
+
+    @Query("""SELECT * FROM $TABLE_PRODUCT WHERE NOT $PRODUCT_COLUMN_SOLD ORDER BY $PRODUCT_COLUMN_ID""")
+    fun unsoldProducts(): LiveData<List<Product>>
 
     @Query("""SELECT * FROM $TABLE_PRODUCT""")
     fun getAllProducts(): LiveData<List<Product>>
