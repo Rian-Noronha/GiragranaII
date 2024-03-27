@@ -74,6 +74,9 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    val userName = user?.displayName ?: "Usuário"
+                    Toast.makeText(requireContext(), "Bora entrando, $userName!", Toast.LENGTH_SHORT).show()
                     navigateToProductListFragment()
                 } else {
                     showAuthErrorToast()

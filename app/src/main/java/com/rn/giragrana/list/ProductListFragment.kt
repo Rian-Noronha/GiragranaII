@@ -1,8 +1,5 @@
 package com.rn.giragrana.list
 
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.core.content.FileProvider
 import androidx.fragment.app.ListFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -29,7 +25,7 @@ import com.rn.giragrana.utils.PdfUtils.exportToPdf
 import com.rn.giragrana.utils.ShareUtils.sharePdf
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.File
-import java.io.FileOutputStream
+
 
 class ProductListFragment :
     ListFragment(),
@@ -126,7 +122,7 @@ class ProductListFragment :
 
             R.id.action_want_pdf -> {
                 val file = File(requireContext().externalCacheDir, "meus_produtos.pdf")
-                exportToPdf(listView, file)
+                exportToPdf(listView, "Meus Produtos", file)
                 sharePdf(requireContext(), file)
                 return true
             }

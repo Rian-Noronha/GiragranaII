@@ -1,45 +1,81 @@
 package com.rn.giragrana.utils
+
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
 import android.view.View
 import android.widget.ListView
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.FileOutputStream
+
 object PdfUtils {
-    fun exportToPdf(listView: ListView, file: File) {
+    private const val A4_WIDTH = 595
+    private const val A4_HEIGHT = 842
+
+    fun exportToPdf(listView: ListView, title: String, file: File) {
         val pdfDocument = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(612, 792, 1).create() // Tamanho da página padrão em pontos (612 x 792)
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-
         val adapter = listView.adapter
-        val paint = Paint().apply {
-            color = Color.BLACK
-        }
 
-        var yPos = 50f
+        var currentPage = 1
+        var itemsOnPage = 0
+        var yPos = 0f
+
+        val pageWidth = A4_WIDTH.toFloat()
+        val pageHeight = A4_HEIGHT.toFloat()
+        val margin = 50f // Margem para evitar que os elementos fiquem muito próximos das bordas da página
+        val elementSpacing = 20f // Espaçamento entre os elementos
+
+        // Configuração do título
+        val titlePaint = Paint().apply {
+            color = Color.BLACK
+            isFakeBoldText
+            textSize = 36f
+            isFakeBoldText = true
+            textAlign = Paint.Align.CENTER
+        }
+        val titleBounds = Rect()
+        titlePaint.getTextBounds(title, 0, title.length, titleBounds)
+        val titleX = pageWidth / 2
+        val titleY = margin + titleBounds.height() // Posição vertical do título
+
+        // Adicionando título à primeira página
+        val titlePage = pdfDocument.startPage(PdfDocument.PageInfo.Builder(A4_WIDTH, A4_HEIGHT, 1).create())
+        val canvasTitle = titlePage.canvas
+        canvasTitle.drawText(title, titleX, titleY, titlePaint)
+        pdfDocument.finishPage(titlePage)
+
+        yPos += titleBounds.height() + margin // Atualizando a posição Y após adicionar o título
+
         for (i in 0 until adapter.count) {
             val view = adapter.getView(i, null, listView)
             view.measure(
-                View.MeasureSpec.makeMeasureSpec(canvas.width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(A4_WIDTH, View.MeasureSpec.EXACTLY),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
             )
             view.layout(0, 0, view.measuredWidth, view.measuredHeight)
-            canvas.save()
-            canvas.translate(0f, yPos)
-            view.draw(canvas)
-            canvas.restore()
-            yPos += view.measuredHeight.toFloat() + 20f
-        }
 
-        pdfDocument.finishPage(page)
+            val elementHeight = view.measuredHeight.toFloat()
+            val remainingHeightOnPage = pageHeight - yPos
+
+            if (remainingHeightOnPage < elementHeight + margin) {
+                currentPage++
+                yPos = 0f
+            }
+
+            val page = pdfDocument.startPage(PdfDocument.PageInfo.Builder(A4_WIDTH, A4_HEIGHT, currentPage).create())
+            val canvas = page.canvas
+            yPos += margin // Adicionando margem ao topo do elemento
+            view.draw(canvas)
+            yPos += elementHeight + elementSpacing // Atualizando a posição Y para o próximo elemento
+            pdfDocument.finishPage(page)
+        }
 
         val outputStream = FileOutputStream(file)
         pdfDocument.writeTo(outputStream)
 
         pdfDocument.close()
-        Snackbar.make(listView, "Imprimindo com sucesso:)", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(listView, "PDF exportado com sucesso:)", Snackbar.LENGTH_SHORT).show()
     }
 }

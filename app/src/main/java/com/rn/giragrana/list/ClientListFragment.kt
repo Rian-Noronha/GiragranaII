@@ -19,8 +19,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.rn.giragrana.R
 import com.rn.giragrana.databinding.FragmentListClientBinding
 import com.rn.giragrana.model.Client
-import com.rn.giragrana.utils.PdfUtils
-import com.rn.giragrana.utils.ShareUtils
+import com.rn.giragrana.utils.PdfUtils.exportToPdf
+import com.rn.giragrana.utils.ShareUtils.sharePdf
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.File
 
@@ -107,9 +107,9 @@ class ClientListFragment :
                 navigateToClientFormFrament()
 
             R.id.action_want_pdf -> {
-                val file = File(requireContext().externalCacheDir, "minhas_revendas.pdf")
-                PdfUtils.exportToPdf(listView, file)
-                ShareUtils.sharePdf(requireContext(), file)
+                val file = File(requireContext().externalCacheDir, "meus_clientes.pdf")
+                exportToPdf(listView, "Meus Clientes", file)
+                sharePdf(requireContext(), file)
                 return true
             }
         }
