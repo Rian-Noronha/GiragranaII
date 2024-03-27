@@ -24,10 +24,10 @@ object PdfUtils {
 
         val pageWidth = A4_WIDTH.toFloat()
         val pageHeight = A4_HEIGHT.toFloat()
-        val margin = 50f // Margem para evitar que os elementos fiquem muito próximos das bordas da página
-        val elementSpacing = 20f // Espaçamento entre os elementos
+        val margin = 50f
+        val elementSpacing = 20f
 
-        // Configuração do título
+
         val titlePaint = Paint().apply {
             color = Color.BLACK
             isFakeBoldText
@@ -38,15 +38,15 @@ object PdfUtils {
         val titleBounds = Rect()
         titlePaint.getTextBounds(title, 0, title.length, titleBounds)
         val titleX = pageWidth / 2
-        val titleY = margin + titleBounds.height() // Posição vertical do título
+        val titleY = margin + titleBounds.height()
 
-        // Adicionando título à primeira página
+
         val titlePage = pdfDocument.startPage(PdfDocument.PageInfo.Builder(A4_WIDTH, A4_HEIGHT, 1).create())
         val canvasTitle = titlePage.canvas
         canvasTitle.drawText(title, titleX, titleY, titlePaint)
         pdfDocument.finishPage(titlePage)
 
-        yPos += titleBounds.height() + margin // Atualizando a posição Y após adicionar o título
+        yPos += titleBounds.height() + margin
 
         for (i in 0 until adapter.count) {
             val view = adapter.getView(i, null, listView)
@@ -66,9 +66,9 @@ object PdfUtils {
 
             val page = pdfDocument.startPage(PdfDocument.PageInfo.Builder(A4_WIDTH, A4_HEIGHT, currentPage).create())
             val canvas = page.canvas
-            yPos += margin // Adicionando margem ao topo do elemento
+            yPos += margin
             view.draw(canvas)
-            yPos += elementHeight + elementSpacing // Atualizando a posição Y para o próximo elemento
+            yPos += elementHeight + elementSpacing
             pdfDocument.finishPage(page)
         }
 

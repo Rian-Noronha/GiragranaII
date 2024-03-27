@@ -32,12 +32,24 @@
             android:textColor="@android:color/darker_gray" />
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray" />
+
+
     <TextView
         android:id="@+id/txtSold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:drawableLeft="@drawable/ic_sell"
+        android:layout_marginTop="4dp"
         android:textStyle="normal"
         android:textSize="18sp"
         android:textColor="@android:color/darker_gray" />

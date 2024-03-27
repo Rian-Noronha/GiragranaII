@@ -21,7 +21,6 @@ class ResaleAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val binding: ItemResaleBinding
         val resale = getItem(position)
-        //val client = clients[resale?.clientId]
         if(convertView == null){
             binding = ItemResaleBinding.inflate(LayoutInflater.from(context), parent, false)
         }else{
