@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.rn.giragrana"
+    namespace = "com.rnoronha.giragrana"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.rn.giragrana"
+        applicationId = "com.rnoronha.giragrana"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

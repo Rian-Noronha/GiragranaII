@@ -6,7 +6,7 @@
     app:startDestination="@id/fragmentLogin">
     <fragment
         android:id="@+id/fragmentListProduct"
-        android:name="com.rn.giragrana.list.ProductListFragment"
+        android:name="com.rnoronha.giragrana.list.ProductListFragment"
         android:label="Teus Produtos"
         tools:layout="@layout/fragment_list_product"
         >
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentListClient"
-        android:name="com.rn.giragrana.list.ClientListFragment"
+        android:name="com.rnoronha.giragrana.list.ClientListFragment"
         android:label="Teus Clientes"
         tools:layout="@layout/fragment_list_client"
         >
@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.rn.giragrana.details.ProductDetailsFragment"
+        android:name="com.rnoronha.giragrana.details.ProductDetailsFragment"
         android:label="Detalhes Produto"
         tools:layout="@layout/fragment_product_details"
         >
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/productFormFragment"
-        android:name="com.rn.giragrana.form.ProductFormFragment"
+        android:name="com.rnoronha.giragrana.form.ProductFormFragment"
         android:label="Bote Produto"
         tools:layout="@layout/fragment_product_form"
         >
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/clientFormFragment"
-        android:name="com.rn.giragrana.form.ClientFormFragment"
+        android:name="com.rnoronha.giragrana.form.ClientFormFragment"
         android:label="Bote Cliente"
         tools:layout="@layout/fragment_client_form"
         >
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/resaleListFragment"
-        android:name="com.rn.giragrana.list.ResaleListFragment"
+        android:name="com.rnoronha.giragrana.list.ResaleListFragment"
         android:label="Tuas Revendas"
         tools:layout="@layout/fragment_list_resale"
         >
@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/resaleFormFragment"
-        android:name="com.rn.giragrana.form.ResaleFormFragment"
+        android:name="com.rnoronha.giragrana.form.ResaleFormFragment"
         android:label="Bote uma revenda"
         tools:layout="@layout/fragment_resale_form"
         >
@@ -117,13 +117,13 @@
     </fragment>
     <fragment
         android:id="@+id/tabsFragment"
-        android:name="com.rn.giragrana.list.TabsFragment"
+        android:name="com.rnoronha.giragrana.list.TabsFragment"
         android:label="Espie Só"
         tools:layout="@layout/fragment_tabs"
         />
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.rn.giragrana.auth.LoginFragment"
+        android:name="com.rnoronha.giragrana.auth.LoginFragment"
         android:label="Bora entrar"
         tools:layout="@layout/fragment_login"
         >
@@ -136,14 +136,14 @@
     </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
-        android:name="com.rn.giragrana.list.PrivacyPolicyFragment"
+        android:name="com.rnoronha.giragrana.list.PrivacyPolicyFragment"
         android:label="Política de Privacidade"
         tools:layout="@layout/fragment_privacy_policy"
         >
     </fragment>
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="com.rn.giragrana.auth.DeleteAccountFragment"
+        android:name="com.rnoronha.giragrana.auth.DeleteAccountFragment"
         android:label="Tela de exclusão"
         tools:layout="@layout/fragment_delete_account"
         >
