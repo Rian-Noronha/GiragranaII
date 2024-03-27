@@ -115,13 +115,18 @@ class LoginFragment : Fragment() {
                     GoogleSignInStatusCodes.SIGN_IN_FAILED -> {
                         Toast.makeText(requireContext(), R.string.login_fail, Toast.LENGTH_LONG).show()
                     }
+
+                    GoogleSignInStatusCodes.NETWORK_ERROR -> {
+                        Toast.makeText(requireContext(), R.string.network_error, Toast.LENGTH_LONG).show()
+                    }
+
                     else -> {
                         Toast.makeText(requireContext(), R.string.unknown_error, Toast.LENGTH_LONG).show()
                     }
                 }
             }
             else -> {
-                Toast.makeText(requireContext(), "Erro de autenticação: ${exception.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "${R.string.unknown_error} ${exception.message}", Toast.LENGTH_LONG).show()
             }
         }
     }

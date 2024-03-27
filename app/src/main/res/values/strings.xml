@@ -75,7 +75,8 @@
     <string name="auth_error_message">Erro de autenticação. Já, já é resolvido!</string>
     <string name="login_cancelled">Login cancelado</string>
     <string name="login_fail">Falha no Login</string>
-    <string name="unknown_error">Erro desconhecido</string>
+    <string name="unknown_error">Ocorreu um problema durante o processo de autenticação. Por favor, tente novamente.</string>
+    <string name="network_error">Ocorreu um erro de rede durante o processo de login.</string>
     <string name="default_web_client_id">682553714532-20kllgbek6keb75k8kh6ovmfdl50p6vt.apps.googleusercontent.com</string>
     <string name="privacy_policy">Política de privacidade</string>
     <string name="error_privacy_policy">Pequeno problema para mostrar a Política do app, aguarde um pouco:)</string>
